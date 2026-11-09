@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="az"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Şəbəkə təhlükəsizliyi — Modul 1</title>
+<style>
+:root{--navy:#0b1830;--blue:#164e83;--cyan:#19a7bd;--gold:#e8b653;--ink:#17243a;--muted:#64748b;--paper:#fff;--bg:#edf2f8;--line:#dce5ef}
+*{box-sizing:border-box}body{margin:0;font:16px/1.68 Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:linear-gradient(120deg,#08162d,#123f6b 65%,#087f91);color:white;padding:30px max(24px,calc((100% - 1250px)/2));position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff26;border-radius:50%;right:8%;top:-190px;box-shadow:0 0 0 35px #ffffff0c,0 0 0 75px #ffffff08}
+.kicker{letter-spacing:.16em;text-transform:uppercase;color:#9de4eb;font-size:12px;font-weight:700}.hero{max-width:850px;position:relative;z-index:1}h1{font-size:clamp(28px,5vw,48px);line-height:1.12;margin:14px 0}header p{color:#d6e5f5;max-width:760px}
+.layout{max-width:1250px;margin:24px auto;display:grid;grid-template-columns:285px minmax(0,1fr);gap:22px;padding:0 18px}
+aside{background:var(--navy);color:#dce8f7;border-radius:16px;padding:20px;height:max-content;position:sticky;top:16px}
+aside h3{color:white;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:4px 0 14px}
+nav a{display:block;color:#c4d3e5;text-decoration:none;padding:9px 11px;border-radius:8px;font-size:14px;margin:3px 0}nav a:hover,nav a.active{background:#1b456f;color:#fff}
+main{min-width:0}.toolbar{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:12px}
+button,.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:650;cursor:pointer}button.secondary{background:#e7eef6;color:#173653}button:hover{filter:brightness(1.08)}
+.progress{height:5px;background:#d7e2ee;border-radius:9px;overflow:hidden;margin-bottom:15px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+section.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,30px);margin-bottom:16px;box-shadow:0 5px 18px #18334d08;scroll-margin-top:20px}
+h2{color:#123d67;font-size:25px;line-height:1.25;margin:0 0 14px}h3{color:#145b7b;margin:22px 0 8px}p{margin:9px 0}.lead{font-size:18px;color:#42556d}
+.callout{border-left:4px solid var(--cyan);background:#edf9fb;padding:13px 16px;border-radius:0 10px 10px 0;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tile{background:#f4f7fb;border:1px solid var(--line);border-radius:12px;padding:15px}.tile b{display:block;color:#14547b;font-size:17px}
+.pill{display:inline-block;border-radius:99px;background:#e4f5f7;color:#08778a;padding:3px 10px;font-size:12px;font-weight:700}
+label{display:block;font-weight:650;margin:12px 0 5px}input,select,textarea{width:100%;padding:10px 12px;border:1px solid #cbd8e5;border-radius:8px;background:white;color:var(--ink);font:inherit}
+.rangeval{font-weight:800;color:#087f91}.result{padding:14px;border-radius:10px;background:#f0f6fb;border:1px solid var(--line);margin-top:12px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}th,td{padding:10px;border:1px solid var(--line);text-align:left}th{background:#eff5fa;color:#19476d}
+.quizq{padding:14px 0;border-bottom:1px solid var(--line)}.feedback{font-weight:700;margin-top:6px}.good{color:#16804a}.bad{color:#b45309}
+footer{text-align:center;color:#718096;padding:25px;font-size:13px}
+.dark{--paper:#111f33;--bg:#091525;--ink:#e3edf8;--muted:#a8b7c9;--line:#2b4058}.dark section.card{box-shadow:none}.dark .tile,.dark .result{background:#172a42}.dark h2,.dark h3{color:#9bd8ed}.dark input,.dark select,.dark textarea{background:#0d1b2e;color:#e3edf8;border-color:#38506b}.dark th{background:#1b3048;color:#cce8f5}
+@media(max-width:850px){.layout{grid-template-columns:1fr}aside{position:relative;top:auto}nav{display:grid;grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}header{padding:26px 20px}}
+@media print{body{background:white}aside,.toolbar,button{display:none!important}.layout{display:block;margin:0;padding:0}section.card{box-shadow:none;break-inside:avoid;border:0;border-bottom:1px solid #ddd}header{background:#123d67!important;print-color-adjust:exact}}
+
+.figure{margin:16px auto 20px;padding:7px;background:#f5f9fd;border:1px solid #d7e4f0;border-radius:12px;width:min(100%,680px);max-width:680px}.figure img{display:block;width:100%;max-height:390px;height:auto;object-fit:contain;margin:0 auto;border-radius:8px}.figure figcaption{font-size:13px;color:#52677e;text-align:center;padding:8px 6px 2px;line-height:1.5}.dark .figure{background:#13243a;border-color:#2b4058}.dark .figure figcaption{color:#b8c9da}
+@media(max-width:700px){.figure{width:100%;padding:5px;margin:14px auto 18px}.figure img{max-height:300px}.figure figcaption{font-size:12px}}\n
+.references{padding-left:24px}.references li{margin:0 0 10px;padding-left:4px}.note{font-size:13px;color:var(--muted);border-left:3px solid var(--cyan);padding:9px 12px;background:#f3f8fc;border-radius:6px}
+
+/* Modul 1 — laboratoriya interfeysi */
+.simlab{margin:22px 0;padding:20px;border:1px solid #cddfed;border-radius:15px;background:linear-gradient(135deg,#f7fbff,#edf6fd)}
+.simlab h4{margin:0 0 8px;color:#124a7b;font-size:19px}.simlab label{display:block;margin-top:10px}.simlab select,.simlab input:not([type=checkbox]){max-width:100%}
+.labcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.labchecks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 15px;margin:12px 0}.labchecks label{display:flex;align-items:center;gap:9px;margin:0;font-size:14px}.labchecks input{width:auto!important;flex:none}
+.labstatus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:15px 0}.labstat{border-radius:12px;background:#fff;padding:10px;border:1px solid #d5e3f0;text-align:center}.labstat b{display:block;font-size:13px}.labstat strong{font-size:24px;color:#145586}.labmeter{height:9px;background:#e4eaf2;border-radius:8px;overflow:hidden;margin-top:8px}.labmeter span{display:block;height:100%;background:linear-gradient(90deg,#f29a42,#20bba9);transition:width .3s}
+.labscore{background:white;border:1px solid #d4e4f0;border-radius:12px;padding:12px;text-align:center}.labscore small,.labscore span{display:block}.labscore strong{display:block;font-size:27px;color:#134b7a}.labbar{height:13px;border-radius:20px;background:#d9e8f4;overflow:hidden;margin:13px 0}.labbar span{display:block;height:100%;background:linear-gradient(90deg,#12a89a,#e7b24e);transition:width .25s}.labchoices{display:grid;gap:9px;margin:12px 0}.labchoices button{text-align:left;white-space:normal}.labnote{font-size:12px;color:#5d6f80}.labquestion{padding:12px;background:white;border-radius:11px;border:1px solid #d7e5f0;margin:12px 0}.labquestion button{margin:5px 7px 5px 0;white-space:normal}.labquestion .selected{outline:3px solid #0a9ca8}.labfeedback{font-size:14px;margin-top:8px;font-weight:600}.labreport{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}
+.dark .simlab{background:#122b42;border-color:#31546d}.dark .simlab h4{color:#a2d9f5}.dark .labstat,.dark .labscore,.dark .labquestion{background:#162e46;border-color:#34546e}.dark .labstat strong,.dark .labscore strong{color:#a8e6f4}
+@media(max-width:650px){.simlab{padding:13px}.labcols,.labchecks{grid-template-columns:1fr}.labstatus{gap:5px}.labstat{padding:7px 3px}.labstat strong{font-size:19px}}
+@media print{.simlab{break-inside:auto}.labchoices button,.simlab button{display:none}}
+
+.scenario{padding:18px;margin:18px 0;border:1px solid #d6e4f0;border-radius:14px;background:#fbfdff}
+.scenario h3{margin:8px 0;color:#164e83;font-size:18px}.scenario p{margin:8px 0 12px}.scenario-input{margin-top:12px}.scenario-input label{display:flex;gap:9px;align-items:flex-start;margin:9px 0;padding:8px 10px;background:#f0f6fb;border-radius:8px}.scenario-input input[type=radio],.scenario-input input[type=checkbox]{width:auto;flex:none;margin-top:4px}.scenario-input input:not([type=radio]):not([type=checkbox]),.scenario-input select{max-width:100%;padding:9px;border:1px solid #b8cadd;border-radius:8px}.matchrow{display:grid!important;grid-template-columns:1fr 170px;align-items:center}.badge{display:inline-block;background:#e1f1fa;color:#14527d;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700}.hint{font-size:13px;color:#65758a}
+.dark .scenario{background:#142a40;border-color:#34536d}.dark .scenario h3{color:#a6dcf4}.dark .scenario-input label{background:#1a3853}.dark .badge{background:#234b68;color:#b7e8f8}
+</style></head><body>
+<header><div class="hero"><div class="kicker">İnteraktiv elektron dərslik · Modul 1</div>
+<h1>Təhlükəsizliyin əsasları</h1><p>Şəbəkə təhlükəsizliyi fənni üzrə nəzəri bilikləri praktiki qərarvermə, risk qiymətləndirilməsi və təhlükəsizlik siyasətinin layihələndirilməsi ilə birləşdirən interaktiv öyrənmə mühiti.</p>
+<span class="pill">7006016 — İnformasiya texnologiyaları</span></div></header>
+<div class="layout"><aside><h3>Mündəricat</h3><nav id="nav">
+<a href="#intro">Modul haqqında</a><a href="#s1">1.1 Təhlükəsizliyə giriş</a><a href="#s2">1.2 Təhlükəsizliyin növləri və standartları</a><a href="#s3">1.3 Anlayışlar və terminlər</a><a href="#s4">1.4 CIA üçlü modeli</a><a href="#s5">1.5 Təhlükəsizlik prinsipləri</a><a href="#lab">Laboratoriya işi №1</a><a href="#quiz">Yoxlama sualları</a><a href="#sources">Mənbə və qeyd</a><a href="#bibliography">Ədəbiyyat</a></nav></aside>
+<main><div class="toolbar"><button class="secondary" onclick="document.body.classList.toggle('dark')">◐ Görünüş</button><button class="secondary" onclick="document.documentElement.style.fontSize=(parseFloat(getComputedStyle(document.documentElement).fontSize)+1)+'px'">A+</button><button class="secondary" onclick="window.print()">Çap / PDF</button></div><div class="progress"><span id="bar"></span></div>
+<section class="card" id="intro"><h2>Modulun məqsədi və öyrənmə nəticələri</h2><p class="lead">Bu modul informasiya və şəbəkə təhlükəsizliyinin əsas anlayışlarını, təhlükəsizlik növlərini, CIA modelini və təhlükəsizlik prinsiplərini öyrənmək üçün nəzərdə tutulub.</p>
+<div class="grid"><div class="tile"><b>Başa düşmək</b>Təhlükəsizlik, təhdid, zəiflik və risk anlayışlarını fərqləndirmək.</div><div class="tile"><b>Təhlil etmək</b>Məxfilik, tamlıq və əlçatanlıq pozuntularını müəyyənləşdirmək.</div><div class="tile"><b>Tətbiq etmək</b>Təşkilat üçün ilkin təhlükəsizlik siyasəti və tədbirlər planı hazırlamaq.</div></div>
+<div class="callout"><b>İş prinsipi:</b> Nəzəri hissədə dərsliyin terminologiyası saxlanılır. Laboratoriya hissəsində isə həmin anlayışlar təhlükəsiz, lokal və tədris məqsədli ssenarilərdə tətbiq olunur.</div></section>
+<section class="card" id="s1"><h2>1.1. Təhlükəsizliyə giriş</h2><p>Təhlükəsizlik istifadəçiləri, informasiya aktivlərini, avadanlığı və sistemləri mümkün zərər və icazəsiz müdaxilələrdən qorumağa yönəlmiş tədbirlər məcmusudur. İnformasiya təhlükəsizliyi informasiyanın qorunmasına, kibertəhlükəsizlik isə rəqəmsal mühitdə sistem və şəbəkələrin təhdidlərdən müdafiəsinə diqqət yetirir.</p>
+<p>Şəbəkə mühitində təhlükəsizlik yalnız texniki vasitələrlə təmin edilmir. Təşkilati qaydalar, istifadəçi davranışı, fiziki mühafizə, girişə nəzarət, ehtiyat nüsxələmə və insidentlərə cavab tədbirləri birlikdə işləməlidir.</p>
+<figure class="figure"><img src="assets/fig1_network_security.png" alt="Şəkil 1.1. Şəbəkə təhlükəsizliyinin ümumi modeli" loading="lazy"><figcaption>Şəkil 1.1. Şəbəkə təhlükəsizliyinin ümumi modeli</figcaption></figure><h3>Təhlükəsizlik tədbirlərinin nümunələri</h3><table><tr><th>Tədbir</th><th>Məqsəd</th><th>Nümunə</th></tr><tr><td>İnzibati</td><td>Qaydaları və məsuliyyəti müəyyənləşdirmək</td><td>Parol siyasəti, istifadəçi təlimi</td></tr><tr><td>Fiziki</td><td>Avadanlıq və məkanları qorumaq</td><td>Server otağına kartla giriş</td></tr><tr><td>Texniki</td><td>Sistem və məlumatları texnoloji vasitələrlə qorumaq</td><td>Firewall, şifrələmə, MFA</td></tr></table></section>
+<section class="card" id="s2"><h2>1.2. Təhlükəsizliyin növləri və standartları</h2><p>Təhlükəsizlik tədbirləri təşkilatın fəaliyyətinə, qorunan aktivlərə və mümkün təhdidlərə uyğun seçilir. İnzibati, fiziki, informasiya və kibertəhlükəsizlik bir-birini tamamlayan istiqamətlərdir.</p>
+<figure class="figure"><img src="assets/fig2_security_levels.png" alt="Şəkil 1.2. Təhlükəsizliyin təşkilati və texniki səviyyələri" loading="lazy"><figcaption>Şəkil 1.2. Təhlükəsizliyin təşkilati və texniki səviyyələri</figcaption></figure><div class="grid"><div class="tile"><b>İnzibati təhlükəsizlik</b>Siyasətlər, prosedurlar, rollar, audit və maarifləndirmə.</div><div class="tile"><b>Fiziki təhlükəsizlik</b>Binalar, server otaqları, enerji və avadanlığa fiziki girişin qorunması.</div><div class="tile"><b>Texniki təhlükəsizlik</b>Şəbəkə filtrləri, autentifikasiya, şifrələmə və monitorinq.</div></div>
+<p>Standartlar təhlükəsizlik idarəetməsinin sistemli qurulmasına kömək edir. Dərslikdə ISO 27001 təhlükəsizlik siyasətinin hazırlanması üçün nümunə kimi göstərilir.</p>
+<div class="callout">Laboratoriyada standartın bütün normativ tələblərinin sertifikatlaşdırma səviyyəsində tətbiqi deyil, təhlükəsizlik siyasətinin əsas strukturunun modelləşdirilməsi həyata keçirilir.</div></section>
+<section class="card" id="s3"><h2>1.3. Təhlükəsizlik anlayışları və terminləri</h2><table><tr><th>Anlayış</th><th>İzah</th></tr><tr><td><b>Aktiv</b></td><td>Qorunmalı olan məlumat, sistem, avadanlıq və ya xidmət.</td></tr><tr><td><b>Təhdid</b></td><td>Məlumata və ya sistemə zərər verə biləcək potensial təhlükə.</td></tr><tr><td><b>Zəiflik</b></td><td>Təhlükəsizliyi poza biləcək sistem zəif nöqtəsi.</td></tr><tr><td><b>Risk</b></td><td>Təhdidin zəiflikdən istifadə etməsi ehtimalı və mümkün nəticəsi.</td></tr><tr><td><b>Mühafizə</b></td><td>Təhdid və riskləri azaltmaq üçün görülən tədbirlər.</td></tr><tr><td><b>Autentifikasiya</b></td><td>İstifadəçi və ya sistemin kimliyinin yoxlanılması.</td></tr><tr><td><b>Avtorizasiya</b></td><td>Uğurlu autentifikasiyadan sonra giriş hüquqlarının verilməsi.</td></tr><tr><td><b>Şifrələmə</b></td><td>Məlumatın açar və alqoritm vasitəsilə anlaşılmaz formaya çevrilməsi.</td></tr><tr><td><b>MFA</b></td><td>Şəxsiyyətin iki və ya daha çox amillə yoxlanılması.</td></tr></table><figure class="figure"><img src="assets/fig4_risk_cycle.png" alt="Şəkil 1.4. Risklərin idarə edilməsi prosesi" loading="lazy"><figcaption>Şəkil 1.4. Risklərin idarə edilməsi prosesi</figcaption></figure></section>
+<section class="card" id="s4"><h2>1.4. İnformasiya təhlükəsizliyinin üçlü modeli (CIA)</h2><p>CIA modeli üç əsas məqsədi birləşdirir: məxfilik (Confidentiality), tamlıq (Integrity) və əlçatanlıq (Availability).</p>
+<figure class="figure"><img src="assets/fig3_cia_model.png" alt="Şəkil 1.3. İnformasiya təhlükəsizliyinin CIA modeli" loading="lazy"><figcaption>Şəkil 1.3. İnformasiya təhlükəsizliyinin CIA modeli</figcaption></figure><div class="grid"><div class="tile"><b>🔒 Məxfilik</b>Məlumata yalnız səlahiyyətli şəxslərin çıxışı olmalıdır.</div><div class="tile"><b>✓ Tamlıq</b>Məlumat icazəsiz və ya nəzarətsiz dəyişdirilməməlidir.</div><div class="tile"><b>↗ Əlçatanlıq</b>Səlahiyyətli istifadəçi məlumatı tələb olunan vaxtda əldə etməlidir.</div></div>
+<h3>Hadisənin CIA komponentlərinə təsirini yoxla</h3><label for="incident">Hadisə ssenarisini seçin</label><select id="incident" onchange="ciaScenario()"><option value="conf">Tələbə bazasının icazəsiz şəxsə açıqlanması</option><option value="int">Qiymətlərin icazəsiz dəyişdirilməsi</option><option value="avail">Universitet portalının xidmətinin dayanması</option><option value="mix">Ehtiyat nüsxənin olmaması və məlumat itkisi</option></select><div class="result" id="ciaout">Ssenari seçildikdə CIA modelinə təsir burada göstəriləcək.</div>
+<h3>Risk qiymətləndirmə kalkulyatoru</h3><p>Bu sadələşdirilmiş tədris modeli ehtimal və təsir ballarının hasilindən istifadə edir: <b>Risk balı = Ehtimal × Təsir</b>.</p><label>Ehtimal: <span class="rangeval" id="pv">3</span>/5</label><input type="range" id="prob" min="1" max="5" value="3" oninput="riskCalc()"><label>Təsir: <span class="rangeval" id="iv">4</span>/5</label><input type="range" id="impact" min="1" max="5" value="4" oninput="riskCalc()"><div class="result" id="riskout"></div><figure class="figure"><img src="assets/fig5_risk_matrix.png" alt="Şəkil 1.5. Risk matrisi: ehtimal və təsir üzrə qiymətləndirmə" loading="lazy"><figcaption>Şəkil 1.5. Risk matrisi: ehtimal və təsir üzrə qiymətləndirmə</figcaption></figure></section>
+<section class="card" id="s5"><h2>1.5. Təhlükəsizlik prinsipləri</h2><p>Təhlükəsizlik prinsipləri strategiya, siyasət və prosedurların hazırlanması üçün əsas yaradır. Dərslikdə məxfilik, tamlıq, əlçatanlıq, autentifikasiya, avtorizasiya, bölünməzlik, davamlılıq, qarşılıqlı asılılıq, proaktivlik, təlim və maarifləndirmə kimi prinsiplər izah edilir.</p>
+<p>Praktikada bir tədbir bir neçə prinsipə eyni vaxtda təsir edə bilər. Məsələn, çoxfaktorlu autentifikasiya icazəsiz giriş ehtimalını azaldır və məxfiliyin qorunmasına kömək edir.</p></section>
+
+<section class="card" id="lab">
+<h2>Laboratoriya işi № 1</h2>
+<h3>İşin adı</h3>
+<p class="lead"><b>İnformasiya təhlükəsizliyinin CIA modelinin interaktiv simulyasiyası və təşkilati risklərin qiymətləndirilməsi</b></p>
+<h3>İşin məqsədi</h3>
+<p>İnformasiya aktivlərini və təhdidləri müəyyənləşdirmək, məxfilik–tamlıq–əlçatanlıq (CIA) modelinin real iş mühitində təsirini simulyasiya etmək, ehtimal və təsir göstəriciləri üzrə riskləri hesablamaq, mühafizə tədbirlərinin nəticəsini müqayisə etmək, təhlükəsizlik siyasəti hazırlamaq və istifadəçilərin məlumatlılığını ölçmək.</p>
+<div class="callout"><b>İşin forması:</b> Brauzerdə çalışan, real sistemlərə qoşulmayan tədris simulyasiyası. Bütün hesablar, jurnallar, hadisələr və şəbəkə obyektləri uydurma təlim məlumatlarıdır. Nəticələr bu səhifədə hesablanır.</div>
+<h3>Nəzəri hissə</h3>
+<p><b>Aktiv</b> təşkilat üçün dəyərli informasiya, sistem və ya resursdur. <b>Təhdid</b> zərər yarada bilən hadisə, <b>zəiflik</b> isə təhlükənin istifadə edə biləcəyi çatışmazlıqdır. <b>Nəzarət tədbiri</b> riski azaltmaq üçün tətbiq edilən təşkilati və ya texniki müdafiədir.</p>
+<div class="grid"><div class="tile"><b>🔒 Məxfilik (C)</b>Yalnız səlahiyyətli şəxslər məlumatı oxuya bilər. Nümunə: tələbə şəxsi məlumatları.</div><div class="tile"><b>✓ Tamlıq (I)</b>Məlumat düzgün və icazəsiz dəyişiklikdən qorunmuş qalmalıdır. Nümunə: qiymət cədvəli.</div><div class="tile"><b>↗ Əlçatanlıq (A)</b>Xidmət lazım olan vaxt işləməlidir. Nümunə: universitet portalı.</div></div>
+<p><b>Sadələşdirilmiş risk modeli:</b> R = E × T; burada E — hadisənin ehtimalı (1–5), T — təsirin ağırlığı (1–5). Tədris şkalası: 1–5 aşağı, 6–12 orta, 13–25 yüksək risk. Müdafiədən sonrakı <b>qalıq risk</b> nəzarət tədbirinin ehtimal və/və ya təsirə təsiri nəzərə alınmaqla yenidən hesablanır. Bu şkala beynəlxalq standartın məcburi formulu deyil, təlim modelidir.</p>
+<h3>Praktiki hissə — interaktiv simulyasiyalar</h3>
+<div class="simlab">
+<h4>Simulyasiya 1. CIA modeli: virtual universitet sistemində insident</h4>
+<p>Hadisəni seçin, mühafizə mexanizmlərini aktivləşdirin və sistemin vəziyyətinin necə dəyişdiyini müşahidə edin. Müdafiə seçimləri real sistemə təsir etmir.</p>
+<label for="labEvent">Təhlükəsizlik hadisəsi</label>
+<select id="labEvent" onchange="labRunCIA()"><option value="leak">Tələbə məlumatlarının icazəsiz oxunması</option><option value="grade">Elektron jurnalda qiymətlərin dəyişdirilməsi</option><option value="down">Tədris portalının sıradan çıxması</option><option value="ransom">Faylların şifrələnməsi və ehtiyat nüsxənin itməsi</option></select>
+<div class="labchecks"><label><input type="checkbox" id="labMFA" onchange="labRunCIA()"> MFA və giriş nəzarəti</label><label><input type="checkbox" id="labAudit" onchange="labRunCIA()"> Audit jurnalı və təsdiq</label><label><input type="checkbox" id="labBackup" onchange="labRunCIA()"> Ehtiyat nüsxə və bərpa</label><label><input type="checkbox" id="labMonitor" onchange="labRunCIA()"> Monitorinq və xəbərdarlıq</label></div>
+<div class="labstatus" id="labCIABars" aria-live="polite"></div><div class="result" id="labCIAResult"></div>
+</div>
+<div class="simlab">
+<h4>Simulyasiya 2. Risk laboratoriyası: tədbirdən əvvəl və sonra</h4>
+<p>Aktiv, zəiflik və nəzarət tədbirini seçin. Ehtimal və təsiri dəyişdirərək ilkin və qalıq riskləri hesablayın.</p>
+<div class="labcols"><div><label for="labAsset">İnformasiya aktivi</label><select id="labAsset" onchange="labRisk()"><option>Tələbə məlumat bazası</option><option>Elektron qiymət jurnalı</option><option>Universitetin veb portalı</option><option>Server otağı</option></select></div><div><label for="labWeak">Zəiflik</label><select id="labWeak" onchange="labRisk()"><option>Zəif və təkrar istifadə olunan parol</option><option>Geniş giriş səlahiyyətləri</option><option>Ehtiyat nüsxənin yoxlanılmaması</option><option>Yenilənmə və monitorinq çatışmazlığı</option></select></div></div>
+<div class="labcols"><div><label for="labLikelihood">Ehtimal: <b id="labLV">4</b>/5</label><input id="labLikelihood" type="range" min="1" max="5" value="4" oninput="labRisk()"></div><div><label for="labSeverity">Təsir: <b id="labSV">4</b>/5</label><input id="labSeverity" type="range" min="1" max="5" value="4" oninput="labRisk()"></div></div>
+<label for="labMitigation">Tətbiq edilən müdafiə tədbiri</label><select id="labMitigation" onchange="labRisk()"><option value="none">Tədbir tətbiq edilmir</option><option value="mfa">MFA — ehtimalı 2 pillə azaldır</option><option value="access">Minimum səlahiyyət — ehtimalı 1, təsiri 1 pillə azaldır</option><option value="backup">Bərpa planı — təsiri 2 pillə azaldır</option><option value="monitor">Monitorinq — ehtimalı 1 pillə azaldır</option></select>
+<div class="labcols"><div class="labscore"><small>İlkin risk</small><strong id="labBefore">16/25</strong><span id="labBeforeLevel"></span></div><div class="labscore"><small>Qalıq risk</small><strong id="labAfter">16/25</strong><span id="labAfterLevel"></span></div></div>
+<div class="labbar"><span id="labRiskBar"></span></div><div class="result" id="labRiskText"></div>
+<p class="labnote">Nəzarət tədbirlərinin təsir əmsalları nümayiş məqsədilə təyin edilib; real təşkilatda qiymətləndirmə sübutlara əsaslanmalıdır.</p>
+</div>
+<div class="simlab">
+<h4>Simulyasiya 3. Təhlükəsizlik hadisəsinə cavab: qərar ağacı</h4>
+<p>Virtual ssenari: tələbə hesabından qeyri-adi saatda çoxsaylı giriş cəhdləri qeydə alınıb. Addım-addım qərar verin. Təhlükəsiz cavab tədbirləri insidentin nəticəsini yaxşılaşdırır.</p>
+<div class="labcols"><div class="labscore"><small>Hadisə mərhələsi</small><strong id="labStage">1 / 3</strong></div><div class="labscore"><small>Təhlükəsiz qərarlar</small><strong id="labPoints">0 / 3</strong></div></div>
+<div class="result" id="labStory"></div><div id="labChoices" class="labchoices"></div><div class="result" id="labStoryFeedback"></div><button class="secondary" type="button" onclick="labResetStory()">Ssenarini yenidən başlat</button>
+</div>
+<div class="simlab">
+<h4>Simulyasiya 4. Təşkilatın təhlükəsizlik siyasəti konstruktoru</h4>
+<p>Təşkilat üçün tədbirlər seçin. Seçdiyiniz qaydalara uyğun avtomatik siyasət layihəsi və əhatə göstəricisi yaranacaq.</p>
+<label for="labOrg">Təşkilatın adı</label><input id="labOrg" value="Virtual Universitet Tədris Sistemi" oninput="labPolicy()">
+<div class="labchecks" id="labPolicyChecks">
+<label><input type="checkbox" value="Girişlər üçün MFA tətbiq olunur." checked onchange="labPolicy()"> MFA və giriş nəzarəti</label>
+<label><input type="checkbox" value="Məlumatlara giriş minimum səlahiyyət prinsipi ilə məhdudlaşdırılır." checked onchange="labPolicy()"> Minimum səlahiyyət</label>
+<label><input type="checkbox" value="Ehtiyat nüsxələr müntəzəm yaradılır və bərpa sınağı aparılır." onchange="labPolicy()"> Ehtiyat nüsxə</label>
+<label><input type="checkbox" value="Təhlükəsizlik hadisələri jurnallaşdırılır və məsul şəxsə bildirilir." onchange="labPolicy()"> Audit və insident bildirişi</label>
+<label><input type="checkbox" value="İstifadəçilər üçün təhlükəsizlik maarifləndirilməsi keçirilir." onchange="labPolicy()"> Maarifləndirmə</label>
+</div>
+<div class="result" id="labPolicyResult"></div><button type="button" onclick="labCopyPolicy()">Siyasət mətnini köçür</button>
+</div>
+<div class="simlab">
+<h4>Simulyasiya 5. Təhlükəsizlik məlumatlılığı: situasiya testi</h4>
+<p>Hər situasiyada ən təhlükəsiz davranışı seçin. Sistem hər cavaba dərhal izah verir və yekun nəticəni hesablayır.</p>
+<div id="labAwarenessQuiz"></div><div class="result" id="labAwarenessScore">Hələ cavab seçilməyib.</div><button class="secondary" type="button" onclick="labResetAwareness()">Testi yenidən başlat</button>
+</div>
+<h3>Laboratoriya işinin yerinə yetirilməsi ardıcıllığı</h3>
+<ol><li>Simulyasiya 1-də dörd hadisəni yoxlayın və CIA göstəricilərinin dəyişməsini müqayisə edin.</li><li>Simulyasiya 2-də ən azı iki aktiv üçün ilkin və qalıq riskləri hesablayın.</li><li>Simulyasiya 3-də hadisəyə cavab ssenarisini tamamlayın və qərarların nəticələrini təhlil edin.</li><li>Simulyasiya 4-də təşkilatın təhlükəsizlik siyasətini formalaşdırın.</li><li>Simulyasiya 5-də məlumatlılıq testini tamamlayın.</li><li>Hesabatı yaradın və nəticələri müəllimə təqdim edin.</li></ol>
+<h3>Hesabat və qiymətləndirmə</h3>
+<p>Hesabatda işin adı və məqsədi, istifadə edilən anlayışlar, hadisələrin CIA təsiri, risk hesablamaları, tətbiq edilən nəzarət tədbirləri, qərar ssenarisi, siyasət layihəsi, test nəticəsi və yekun təkliflər göstərilməlidir.</p>
+<button type="button" onclick="labReport()">Laboratoriya hesabatını formalaşdır</button><button class="secondary" type="button" onclick="labPrintReport()">Hesabatı çap et / PDF kimi saxla</button>
+<div class="result" id="labReportOut">Simulyasiyaları yerinə yetirdikdən sonra hesabatı burada yaradın.</div>
+</section>
+
+<section class="card" id="quiz"><h2>Yoxlama sualları — 10 real həyat ssenarisi</h2>
+<p>Tapşırıqlar Modul 1-in təhlükəsizlik anlayışları, CIA modeli, risklər, autentifikasiya, təhlükəsizlik prinsipləri və insidentlərə cavab mövzularına əsaslanır. Yeddi interaktiv sual formatı istifadə olunur: tək seçim, çoxseçimli, doğru/yanlış, ardıcıllıq, uyğunlaşdırma, boşluğu doldurma və situasiya üzrə qərar.</p>
+<div class="callout">Hər ssenarini diqqətlə oxuyun. Cavabları seçdikdən sonra “Yoxla” düyməsini basın. Sistem düzgün cavabı və izahı göstərəcək.</div>
+<div id="quizbox"></div><button onclick="gradeQuiz()">Cavabları yoxla</button> <button class="secondary" onclick="resetQuiz()">Yenidən başla</button><div class="result" id="quizout"></div></section>
+<section class="card" id="sources"><h2>Mənbə və metodiki qeyd</h2><p>Bu modulun əsas mənbəyi istifadəçinin təqdim etdiyi <i>“Şəbəkə təhlükəsizliyi”</i> dərsliyinin Modul 1 bölməsidir. Modulun başlıqları və dərslikdəki praktiki tapşırıqların məntiqi saxlanılmışdır. Kalkulyatorlar, simulyasiya ssenariləri və siyasət konstruktoru həmin məzmunun interaktiv tədris əlavələridir.</p><p><b>Qeyd:</b> Risk kalkulyatoru tədris məqsədli sadələşdirilmiş modeldir; təşkilatın rəsmi risk metodologiyasını əvəz etmir.</p></section>
+
+<section class="card" id="bibliography">
+<h2>Ədəbiyyat</h2>
+<p>Modul 1-də təhlükəsizliyin əsas anlayışları, informasiya təhlükəsizliyinin prinsipləri, hüquqi tənzimləmə, CIA modeli və risklərin idarə edilməsi mövzularını öyrənmək üçün təqdim edilmiş ümumi ədəbiyyat siyahısından seçilmiş mənbələr.</p>
+<ol class="references">
+<li>Azərbaycan Respublikasının Konstitusiyası. Bakı, 2009.</li>
+<li>Dövlət sirri haqqında Azərbaycan Respublikasının Qanunu. Bakı, 2004.</li>
+<li>Azərbaycan haqqında məlumat əldə etmək qanunu. Bakı, 2005.</li>
+<li>Fərdi məlumatlar haqqında Azərbaycan Respublikasının Qanunu. Bakı, 2010.</li>
+<li>Kommersiya sirri haqqında Azərbaycan Respublikasının Qanunu. Bakı, 2001.</li>
+<li>Azərbaycan Respublikasının məlumat azadlığı haqqında Qanunu. Bakı, 1998.</li>
+<li>Milli təhlükəsizlik haqqında Azərbaycan Respublikasının Qanunu. Bakı, 2004.</li>
+<li>Azərbaycan Respublikasının informasiya təhlükəsizliyi və kibertəhlükəsizliyə dair 2023–2027-ci illər üçün Strategiyası. 28 avqust 2023.</li>
+<li>Azərbaycan Respublikası Prezidentinin “İnformasiya təhlükəsizliyi sahəsində fəaliyyətin təkmilləşdirilməsi tədbirləri haqqında” 26 sentyabr 2012-ci il tarixli 708 nömrəli Fərmanı.</li>
+<li>İsmayıl Calallı (Sadıqov). İnformatika terminlərinin izahlı lüğəti. Bakı: “Bakı” nəşriyyatı, 2017, 996 s.</li>
+<li>Əlizadə M.N., Bayramov H.M., Məmmədov Ə.S. İnformasiya təhlükəsizliyi. Dərslik. Bakı: “İqtisad Universiteti” nəşriyyatı, 2016, 384 s.</li>
+<li>Qasımov V.Ə. İnformasiya təhlükəsizliyinin əsasları. Dərslik. Bakı, 2009, 340 s.</li>
+<li>Qasımov V.Ə. İnformasiya təhlükəsizliyi: kompüter cinayətkarlığı və kiberterrorçuluq. Bakı, 2007.</li>
+<li>Əliquliyev R.M., İmamverdiyev Y.N. İnformasiya təhlükəsizliyi insidentləri. Bakı, 2012, 219 s.</li>
+<li>Whitman, M.E., Mattord, H.J. İnformasiya təhlükəsizliyinin prinsipləri (ingilis dilindən tərcümə). Bakı: TEAS Press, 2024, 556 s.</li>
+<li>Nieles, M., Dempsey, K., Pillitteri, V.Y. An Introduction to Information Security. USA, 2017, 101 p.</li>
+<li>Whitman, M.E., Mattord, H.J. Principles of Information Security. 7th Edition.</li>
+<li>Johnson, T.A. Cyber: Protecting Critical Infrastructures from Cyber Attack and Cyber Warfare. Webster University, St. Louis, Missouri, USA, 2015, 348 p.</li>
+<li>Вострецова, Е.В. Основы информационной безопасности: учебное пособие. Екатеринбург: Издательство Уральского университета, 2019, 204 с.</li>
+<li>Теоретические основы компьютерной безопасности / П.Н. Девянин и др. Москва: Радио и связь, 2000, 192 с.</li>
+<li>Малюк, А.А., Пазизин, С.В., Погожин, Н.С. Введение в защиту информации в автоматизированных системах. Москва: Горячая линия — Телеком, 2001, 148 с.</li>
+<li>Симонов, С.В. Методология анализа рисков в информационных системах. Конфидент, 2001, № 1.</li>
+<li>Сизова, О.В. Информационная безопасность: учебное пособие. Иваново, 2015, 120 с.</li>
+<li>Соловьев, А.А., Метелев, С.Е., Зырянова, С.А. Защита информации и информационная безопасность. Омск, 2011, 426 с.</li>
+<li>Шаньгин, В.Ф. Информационная безопасность компьютерных систем и сетей. Москва: Форум, Инфра-М, 2017, 416 с.</li>
+</ol>
+<p class="note"><b>Qeyd:</b> Siyahı istifadəçinin təqdim etdiyi ümumi ədəbiyyat siyahısından Modul 1-in mövzularına uyğun seçilib. Mənbələrin biblioqrafik təsviri təqdim edilmiş mətndəki məlumatlar əsasında verilib; ilkin siyahıda olan yazılış və nəşr məlumatları ayrıca bibliografik yoxlamadan keçirilməyib.</p>
+</section>
+</main></div><footer>Şəbəkə təhlükəsizliyi · İnteraktiv elektron dərslik · Modul 1</footer>
+<script>
+const $=id=>document.getElementById(id);
+function ciaScenario(){let d={conf:"Əsas təsir: Məxfilik. Tələbə məlumatlarına icazəsiz çıxış baş verib. Müdafiə: giriş hüquqlarının məhdudlaşdırılması, MFA, şifrələmə və audit jurnalları.",int:"Əsas təsir: Tamlıq. Qiymətlər icazəsiz dəyişdirilib. Müdafiə: dəyişiklik jurnalları, səlahiyyət bölgüsü, təsdiq mexanizmi və ehtiyat nüsxə.",avail:"Əsas təsir: Əlçatanlıq. Portal istifadəçilər üçün əlçatan deyil. Müdafiə: ehtiyat infrastruktur, monitorinq, tutum planlaşdırılması və bərpa proseduru.",mix:"Əsas təsir: Əlçatanlıq və tamlıq. Məlumat itirilib və əvvəlki düzgün vəziyyətə qayıtmaq çətinləşib. Müdafiə: müntəzəm ehtiyat nüsxə və bərpa sınaqları."};$("ciaout").textContent=d[$("incident").value]}
+function riskCalc(){let p=+$("prob").value,i=+$("impact").value,v=p*i;$("pv").textContent=p;$("iv").textContent=i;$("riskout").innerHTML=`<b>Risk balı: ${v}/25</b><br>${v<=5?"Aşağı risk — mövcud nəzarətləri saxlayın və izləyin.":v<=12?"Orta risk — əlavə nəzarət və məsul şəxs müəyyən edin.":"Yüksək risk — prioritet tədbir, müddət və məsul şəxs təyin edin."}`}
+function caseAnalyze(){let d={phish:"Təsir: məxfilik və hesabın ələ keçirilməsi riski. Tədbirlər: MFA, istifadəçi maarifləndirilməsi, şübhəli məktubların bildirilməsi və hesab fəaliyyətinin yoxlanması.",change:"Təsir: məlumatın tamlığı. Tədbirlər: rol əsaslı giriş, audit jurnalı, dəyişikliklərin təsdiqi və ehtiyat nüsxədən bərpa.",outage:"Təsir: əlçatanlıq. Tədbirlər: xidmət monitorinqi, ehtiyat resurslar, insident planı və bərpa sınaqları.",device:"Təsir: məxfilik. Tədbirlər: disk şifrələnməsi, ekran kilidi, uzaqdan girişin ləğvi və cihaz itkisi proseduru."};$("caseout").textContent=d[$("case").value]}
+function assetReport(){let a=[...document.querySelectorAll(".asset:checked")].map(x=>x.value);$("assetout").innerHTML=`<b>Seçilmiş aktivlər:</b> ${a.length?a.join(", "):"Aktiv seçilməyib."}<br><b>Müəyyən edilmiş zəiflik:</b> ${$("weak").value}.<br><b>Təklif olunan tədbir:</b> ${$("control").value}.<br><b>Tövsiyə:</b> tədbirin tətbiqinə məsul şəxs və icra müddəti təyin edin; sonra nəzarətin effektivliyini sınaqdan keçirin.`}
+function makePolicy(){let t=`${$("org").value} üçün ilkin informasiya təhlükəsizliyi siyasəti\n\n1. Girişə nəzarət: ${$("policy").value}.\n2. Məlumatların qorunması: ${$("data").value}.\n3. İnsidentlərin idarə edilməsi: ${$("response").value}.\n4. İcra: məsul şəxs, yoxlama dövriliyi və istifadəçi maarifləndirilməsi müəyyən edilsin.\n\nBu layihə tədris nümunəsidir; təşkilatın real riskləri və qüvvədə olan tələbləri əsasında təsdiqlənməlidir.`;$("policyout").innerHTML="<pre style='white-space:pre-wrap;font:inherit'></pre><button class='secondary' onclick='copyPolicy()'>Mətni köçür</button>";$("policyout").querySelector("pre").textContent=t;window.policyText=t}
+function copyPolicy(){navigator.clipboard?.writeText(window.policyText||"")}
+
+const aq=[
+{type:"single",title:"1. Universitetin tələbə bazası",story:"Universitetin əməkdaşı tələbə məlumat bazasına daxil olarkən başqa fakültənin tələbələrinin şəxsiyyət vəsiqəsi nömrələrini də görə bilir. O, bu məlumatları dəyişmir və sistem işləkdir.",q:"Əsasən hansı təhlükəsizlik xüsusiyyəti pozulub?",opts:["Məxfilik","Tamlıq","Əlçatanlıq","İnkarolunmazlıq"],ans:0,why:"Məlumat səlahiyyəti olmayan şəxsə açılıb. Dəyişiklik və xidmət dayanması olmadığı üçün əsas pozuntu məxfilikdir."},
+{type:"multi",title:"2. Elektron qiymət jurnalında dəyişiklik",story:"Müəllim jurnalda tələbənin qiymətinin onun xəbəri olmadan dəyişdirildiyini görür. Sistem əvvəlki qiyməti və dəyişiklik edən hesabı göstərmir.",q:"Tamlığın qorunması üçün hansı tədbirlər uyğundur? (Bir neçə cavab seçin.)",opts:["Dəyişiklik tarixçəsi və audit jurnalı","Rollar üzrə giriş icazələri","Ekran rənginin dəyişdirilməsi","Qiymət dəyişikliyinin təsdiq mexanizmi"],ans:[0,1,3],why:"Audit izi, minimum səlahiyyət və təsdiq mexanizmi icazəsiz dəyişikliklərin qarşısını almağa və araşdırmağa kömək edir."},
+{type:"tf",title:"3. Tədris portalının dayanması",story:"İmtahan qeydiyyatının son günündə portal texniki nasazlıq səbəbindən əlçatmaz olur. Məlumat bazasının məzmunu dəyişməyib və kənar şəxslərə açılmayıb.",q:"Bu hadisə CIA modelində ilk növbədə əlçatanlığa təsir edir.",ans:true,why:"Səlahiyyətli istifadəçilər tələb olunan xidmətdən istifadə edə bilmirlər. Bu, əlçatanlıq problemidir."},
+{type:"order",title:"4. Şübhəli giriş insidenti",story:"Təhlükəsizlik monitorinqi tələbə hesabına müxtəlif ölkələrdən ardıcıl uğursuz giriş cəhdləri qeydə alır.",q:"İnsidentə cavab addımlarını düzgün ardıcıllığa salın.",opts:["Hadisəni qeydiyyata almaq və sübutları qorumaq","Hesabın fəaliyyətini müvəqqəti məhdudlaşdırmaq və məsul şəxsə bildirmək","Səbəbi araşdırmaq, parolu yeniləmək və MFA tətbiq etmək"],ans:[1,2,3],why:"Əvvəl hadisə qeydə alınır, sonra yayılma məhdudlaşdırılır, ardınca araşdırma və bərpa tədbirləri görülür."},
+{type:"match",title:"5. Təhlükəsizlik məqsədlərinin fərqləndirilməsi",story:"Universitetin informasiya təhlükəsizliyi üzrə təlimində üç hadisə təhlil edilir.",q:"Hər hadisəni uyğun CIA xüsusiyyəti ilə əlaqələndirin.",left:["Tələbə məlumatını yalnız səlahiyyətli şəxslər görə bilir","Qiymət bazasında dəyişikliklər təsdiq və jurnalla izlənir","Portal tələb olunan vaxtda istifadəçiyə xidmət göstərir"],right:["Məxfilik","Tamlıq","Əlçatanlıq"],ans:[0,1,2],why:"Məxfilik məlumatı kimin görə biləcəyini, tamlıq dəyişikliklərin düzgünlüyünü, əlçatanlıq isə xidmətə vaxtında çıxışı ifadə edir."},
+{type:"fill",title:"6. Riskin hesablanması",story:"Serverdə zəif parol istifadəsi ehtimalı 4 bal, mümkün təsirin ağırlığı 5 bal kimi qiymətləndirilib. Tədris modelində risk ehtimal × təsir düsturu ilə hesablanır.",q:"İlkin risk balını daxil edin (yalnız rəqəm).",ans:"20",why:"4 × 5 = 20. Bu modulun tədris şkalasına əsasən 13–25 aralığı yüksək riskdir."},
+{type:"case",title:"7. Ehtiyat nüsxələrin yoxlanılması",story:"Universitetin serverində fayllar şifrələnib. İnformasiya texnologiyaları əməkdaşları ehtiyat nüsxənin mövcud olduğunu deyirlər, lakin son bərpa sınağının nə vaxt aparıldığı məlum deyil.",q:"Ən düzgün qərar hansıdır?",opts:["Ehtiyat nüsxənin mövcudluğunu kifayət hesab edib işi bitirmək","Nüsxənin bütövlüyünü yoxlamaq, təcrid olunmuş mühitdə bərpa sınağı aparmaq və insident planına uyğun işləmək","Bütün jurnalları silib serveri dərhal internetə qaytarmaq"],ans:1,why:"Ehtiyat nüsxənin olması təkbaşına kifayət deyil. Onun işləkliyi və bərpa proseduru yoxlanmalıdır."},
+{type:"single",title:"8. İşdən çıxmış əməkdaşın hesabı",story:"Universitetdən ayrılmış əməkdaşın istifadəçi hesabı iki həftə sonra da aktiv qalır. Hesabda tələbə məlumatlarına giriş icazəsi var.",q:"Hansı təhlükəsizlik prinsipi və tədbir daha uyğundur?",opts:["Minimum səlahiyyət və vaxtında girişin ləğvi","Əlçatanlıq və parolun hamıya verilməsi","Məlumatların açıq internetdə saxlanması","Audit jurnallarının söndürülməsi"],ans:0,why:"İş münasibəti bitdikdə hesab və icazələr vaxtında ləğv edilməlidir. Bu, minimum səlahiyyət və girişə nəzarət prinsipinə uyğundur."},
+{type:"multi",title:"9. Fərdi məlumatların qorunması",story:"Universitet yeni onlayn qeydiyyat forması yaradır. Forma tələb olunan məlumatlardan əlavə şəxsi telefon kitabçasına və lazımsız şəxsi məlumatlara çıxış istəyir.",q:"Məlumatların təhlükəsiz toplanması üçün hansı yanaşmalar doğrudur? (Bir neçə cavab seçin.)",opts:["Yalnız məqsəd üçün zəruri məlumatları toplamaq","Məlumatlara çıxışı və saxlanma müddətini məhdudlaşdırmaq","Məlumatları razılıq və hüquqi əsas olmadan üçüncü tərəfə ötürmək","Məlumatların qorunması və istifadə qaydalarını aydın bildirmək"],ans:[0,1,3],why:"Məlumat minimallaşdırılması, məhdud giriş və şəffaf məlumatlandırma fərdi məlumatların qorunmasının əsas yanaşmalarıdır."},
+{type:"tf",title:"10. Təhlükəsizlik siyasəti və maarifləndirmə",story:"Universitetdə texniki firewall quraşdırılıb. Rəhbərlik hesab edir ki, buna görə əməkdaşların təhlükəsizlik təliminə ehtiyac yoxdur.",q:"Bu yanaşma doğrudur: texniki vasitələr təşkilati qaydaları və istifadəçi maarifləndirilməsini tam əvəz edir.",ans:false,why:"Təhlükəsizlik texniki, inzibati və insan faktorunu əhatə edən kompleks yanaşmadır. Firewall təkbaşına fişinq, zəif parol və daxili səhvlərin hamısını aradan qaldırmır."}
+];
+function renderQs(){
+ let h="";
+ aq.forEach((q,i)=>{
+  h+=`<div class="quizq scenario" id="scenario${i}"><span class="badge">Ssenari ${i+1} · ${q.type.toUpperCase()}</span><h3>${q.title}</h3><p>${q.story}</p><b>${q.q}</b><div class="scenario-input" id="scenarioInput${i}">`;
+  if(q.type==="single"||q.type==="case")h+=q.opts.map((v,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${v}</label>`).join("");
+  if(q.type==="multi")h+=q.opts.map((v,j)=>`<label><input type="checkbox" name="q${i}" value="${j}"> ${v}</label>`).join("");
+  if(q.type==="tf")h+=`<label><input type="radio" name="q${i}" value="true"> Doğru</label><label><input type="radio" name="q${i}" value="false"> Yanlış</label>`;
+  if(q.type==="order")h+=`<p class="hint">Siyahıdakı addımların nömrələrini düzgün ardıcıllıqla yazın. Məsələn: 2,1,3</p><input id="q${i}" placeholder="1,2,3">`;
+  if(q.type==="match")h+=q.left.map((v,j)=>`<label class="matchrow">${v}<select id="q${i}_${j}"><option value="">Seçin</option>${q.right.map((r,k)=>`<option value="${k}">${r}</option>`).join("")}</select></label>`).join("");
+  if(q.type==="fill")h+=`<input id="q${i}" inputmode="numeric" placeholder="Cavabı daxil edin">`;
+  h+=`</div><div id="f${i}" class="feedback"></div></div>`;
+ });
+ $("quizbox").innerHTML=h;
+}
+function quizAnswer(i){
+ const q=aq[i];
+ if(q.type==="single"||q.type==="case"){const v=document.querySelector(`input[name=q${i}]:checked`);return v?+v.value:null}
+ if(q.type==="multi")return [...document.querySelectorAll(`input[name=q${i}]:checked`)].map(x=>+x.value).sort();
+ if(q.type==="tf"){const v=document.querySelector(`input[name=q${i}]:checked`);return v?v.value==="true":null}
+ if(q.type==="fill")return $("q"+i).value.trim();
+ if(q.type==="order")return $("q"+i).value.split(",").map(x=>parseInt(x.trim(),10));
+ if(q.type==="match")return q.left.map((_,j)=>$("q"+i+"_"+j).value===""?null:+$("q"+i+"_"+j).value);
+}
+function same(a,b){return JSON.stringify(a)===JSON.stringify(b)}
+function gradeQuiz(){
+ let score=0,answered=0;
+ aq.forEach((q,i)=>{
+  const v=quizAnswer(i);let ok=false;
+  if(v!==null&&v!==""&&!(Array.isArray(v)&&v.length===0))answered++;
+  if(q.type==="multi")ok=same(v,q.ans);
+  else if(q.type==="fill")ok=String(v).replace(/\s/g,"")===q.ans;
+  else ok=same(v,q.ans);
+  if(ok)score++;
+  const correct=q.type==="multi"?q.ans.map(k=>q.opts[k]).join("; "):q.type==="tf"?(q.ans?"Doğru":"Yanlış"):q.type==="order"?"1, 2, 3":q.type==="match"?q.ans.map(k=>q.right[k]).join("; "):q.type==="fill"?q.ans:q.opts?q.opts[q.ans]:"";
+  $("f"+i).textContent=(ok?"✓ Düzgün cavab. ":"✗ Düzgün cavab: "+correct+". ")+q.why;
+  $("f"+i).className="feedback "+(ok?"good":"bad");
+ });
+ $("quizout").textContent=`Yekun nəticə: ${score}/${aq.length} (${Math.round(score/aq.length*100)}%). Cavablandırılıb: ${answered}/${aq.length}. ${score>=8?"Çox yaxşı! Mövzunun əsas anlayışlarını mənimsəmisiniz.":score>=5?"Qənaətbəxş nəticə. İzahları oxuyub səhv cavabları təkrar işləyin.":"Mövzunu yenidən nəzərdən keçirin və ssenariləri təkrar həll edin."}`;
+}
+function resetQuiz(){renderQs();$("quizout").textContent="";aq.forEach((q,i)=>$("f"+i).textContent="")}
+const aw=[["Şübhəli məktubdakı keçidə klikləməzdən əvvəl nə etməlisiniz?",["Göndərəni və keçidin ünvanını yoxlamaq","Dərhal parolu daxil etmək","Məktubu hamıya yönləndirmək"],0],["Eyni parolu bir neçə sistemdə istifadə etmək...",["Təhlükəsizliyi artırır","Hesabların birlikdə riskə düşməsinə səbəb ola bilər","MFA-nı əvəz edir"],1],["Məlumat itkisinə qarşı əsas tədbir hansıdır?",["Ehtiyat nüsxə və bərpa sınağı","Ekran parlaqlığını azaltmaq","Brauzer mövzusunu dəyişmək"],0]];
+function renderAw(){let h="";aw.forEach((q,i)=>h+=`<div class="quizq"><b>${i+1}. ${q[0]}</b>${q[1].map((v,j)=>`<label><input type="radio" name="a${i}" value="${j}" style="width:auto"> ${v}</label>`).join("")}</div>`);$("awareness").innerHTML=h}
+function gradeAwareness(){let s=0;aw.forEach((q,i)=>{let v=document.querySelector(`input[name=a${i}]:checked`);if(v&&+v.value===q[2])s++});$("awareout").textContent=`Məlumatlılıq testi: ${s}/${aw.length}. ${s===3?"Yaxşı nəticə — əsas təhlükəsizlik davranışları mənimsənilib.": "Təhlükəsizlik maarifləndirilməsi üzrə əlavə təlim tövsiyə olunur."}`}
+const sections=[...document.querySelectorAll("main section")];window.addEventListener("scroll",()=>{let max=document.documentElement.scrollHeight-innerHeight;$("bar").style.width=(max>0?scrollY/max*100:0)+"%";let cur=sections.filter(s=>s.getBoundingClientRect().top<180).pop();document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",cur&&a.getAttribute("href")==="#"+cur.id))});
+ciaScenario();riskCalc();caseAnalyze();renderQs();renderAw();
+
+const labEvents={
+ leak:{title:"İcazəsiz məlumat oxunması",base:[25,90,95],benefit:[65,0,0],details:"Tələbələrin şəxsi məlumatlarının məxfiliyi pozulub.",fix:"MFA və girişə nəzarət məxfilik itkisi ehtimalını azaldır."},
+ grade:{title:"Qiymətlərin icazəsiz dəyişdirilməsi",base:[85,20,95],benefit:[0,65,0],details:"Qiymət məlumatlarının tamlığı pozulub.",fix:"Dəyişiklik jurnalı və təsdiq mexanizmi tamlığı qoruyur."},
+ down:{title:"Tədris portalının əlçatmazlığı",base:[95,95,20],benefit:[0,0,60],details:"İstifadəçilər portala daxil ola bilmirlər.",fix:"Bərpa planı xidmətin əlçatanlığını yaxşılaşdırır."},
+ ransom:{title:"Faylların şifrələnməsi",base:[85,35,15],benefit:[0,25,55],details:"Fayllar dəyişdirilib və xidmət əlçatmazdır.",fix:"Audit və bərpa prosedurları təsirin azaldılmasına kömək edir."}
+};
+let labState={story:0,points:0,answers:{},policy:"",report:""};
+function labRunCIA(){
+ const e=labEvents[$("labEvent").value],flags={mfa:$("labMFA").checked,audit:$("labAudit").checked,backup:$("labBackup").checked,monitor:$("labMonitor").checked};
+ let v=[...e.base];
+ if(flags.mfa)v[0]=Math.min(100,v[0]+(e===labEvents.leak?65:10));
+ if(flags.audit)v[1]=Math.min(100,v[1]+(e===labEvents.grade?65:25));
+ if(flags.backup){v[2]=Math.min(100,v[2]+(e===labEvents.down?60:55));v[1]=Math.min(100,v[1]+(e===labEvents.ransom?25:0))}
+ if(flags.monitor){v=v.map(x=>Math.min(100,x+8))}
+ const labels=["Məxfilik","Tamlıq","Əlçatanlıq"];
+ $("labCIABars").innerHTML=v.map((x,i)=>`<div class="labstat"><b>${labels[i]}</b><strong>${x}%</strong><div class="labmeter"><span style="width:${x}%"></span></div></div>`).join("");
+ $("labCIAResult").textContent=e.details+" "+e.fix+" Göstəricilər real ölçmə deyil, seçilən tədbirlərin təsirini müqayisə edən tədris indeksləridir.";
+}
+function labLevel(n){return n<=5?"Aşağı":n<=12?"Orta":"Yüksək"}
+function labRisk(){
+ const p=+$("labLikelihood").value,s=+$("labSeverity").value,m=$("labMitigation").value;
+ const d={none:[0,0],mfa:[2,0],access:[1,1],backup:[0,2],monitor:[1,0]}[m];
+ const rp=Math.max(1,p-d[0]),rs=Math.max(1,s-d[1]),before=p*s,after=rp*rs;
+ $("labLV").textContent=p;$("labSV").textContent=s;
+ $("labBefore").textContent=before+"/25";$("labAfter").textContent=after+"/25";
+ $("labBeforeLevel").textContent=labLevel(before)+" risk";$("labAfterLevel").textContent=labLevel(after)+" risk";
+ $("labRiskBar").style.width=(after/25*100)+"%";
+ $("labRiskText").textContent=`${$("labAsset").value}: ${$("labWeak").value}. İlkin risk ${p} × ${s} = ${before}; nəzarətdən sonra ${rp} × ${rs} = ${after}. Risk ${before-after} bal azalıb.`;
+}
+const labStorySteps=[
+ {q:"Monitorinq sistemində qeyri-adi giriş cəhdləri aşkarlandı. İlk addımınız nədir?",a:["Hadisəni qeydiyyata alıb hesab fəaliyyətini yoxlamaq","Bütün sistem jurnallarını silmək","Xəbərdarlığı nəzərə almamaq"],correct:0,why:"Hadisəni sənədləşdirmək və ilkin təsdiqləmə aparmaq düzgün başlanğıcdır."},
+ {q:"Şübhəli girişin həqiqi olduğu təsdiqləndi. Nə etməlisiniz?",a:["Hesabı müvəqqəti məhdudlaşdırıb məsul şəxsə bildirmək","Hesabın parolunu hamıya göndərmək","Bütün istifadəçi hesablarını silmək"],correct:0,why:"Məhdudlaşdırma və bildiriş zərəri azaldır, sübutları qoruyur."},
+ {q:"İnsident nəzarətə alındı. Növbəti mərhələ hansıdır?",a:["Giriş qeydlərini qoruyub parolu yeniləmək, MFA tətbiq etmək və səbəbi araşdırmaq","İnsidenti gizlətmək","Heç nə etmədən hesabı açmaq"],correct:0,why:"Bərpa, kök səbəb təhlili və təkrarlanmanın qarşısının alınması vacibdir."}
+];
+function labRenderStory(){
+ const st=labState.story;
+ $("labStage").textContent=Math.min(st+1,3)+" / 3";$("labPoints").textContent=labState.points+" / 3";
+ if(st>=3){$("labStory").textContent="Ssenari tamamlandı."; $("labChoices").innerHTML="";$("labStoryFeedback").textContent=`Nəticə: ${labState.points}/3 düzgün qərar. ${labState.points===3?"İnsidentə cavab ardıcıllığı uğurludur.":"Qərarları yenidən yoxlayın."}`;return}
+ const step=labStorySteps[st];$("labStory").textContent=step.q;
+ $("labChoices").innerHTML=step.a.map((a,i)=>`<button type="button" class="secondary" onclick="labChooseStory(${i})">${String.fromCharCode(65+i)}. ${a}</button>`).join("");
+}
+function labChooseStory(i){
+ const step=labStorySteps[labState.story];if(i===step.correct)labState.points++;
+ labState.story++;labRenderStory();
+ $("labStoryFeedback").textContent=(i===step.correct?"Düzgün. ":"Bu qərar təhlükəsiz deyil. ")+step.why;
+}
+function labResetStory(){labState.story=0;labState.points=0;$("labStoryFeedback").textContent="";labRenderStory()}
+function labPolicy(){
+ const org=$("labOrg").value.trim()||"Virtual təşkilat",chosen=[...document.querySelectorAll("#labPolicyChecks input:checked")].map(e=>e.value);
+ labState.policy=`${org} — informasiya təhlükəsizliyi siyasəti (tədris layihəsi)\n`+chosen.map((v,i)=>`${i+1}. ${v}`).join("\n")+"\nİcra və yoxlama üçün məsul şəxs və tarix təyin edilməlidir.";
+ $("labPolicyResult").textContent=`Əhatə: ${chosen.length}/5 əsas tədbir (${chosen.length*20}%).\n\n`+labState.policy;
+}
+function labCopyPolicy(){
+ const ta=document.createElement("textarea");ta.value=labState.policy;document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(e){}ta.remove();
+}
+const labAwQuestions=[
+ {q:"Sizdən parol tələb edən naməlum e-poçt aldınız. Nə edirsiniz?",a:["Rəsmi kanaldan yoxlayır və şübhəli məktubu bildirirəm","Keçiddə parolu daxil edirəm","Məktubu bütün qrupa göndərirəm"],ok:0,why:"Naməlum keçiddə parol daxil etmək hesabın ələ keçirilməsi riskini artırır."},
+ {q:"Tələbə qiymətlərini dəyişmək üçün həmkarınız sizin hesabınızı istəyir.",a:["Şəxsi hesabımı verirəm","Rəsmi rol və icazə mexanizmini tövsiyə edirəm","Parolu messencerdə göndərirəm"],ok:1,why:"Hesabların paylaşılması hesabatlılığı və girişə nəzarəti pozur."},
+ {q:"Vacib faylların yeganə nüsxəsi bir kompüterdədir.",a:["Heç nə etmirəm","Faylları hamıya açıq edirəm","Ehtiyat nüsxə və bərpa sınağı təşkil edirəm"],ok:2,why:"Ehtiyat nüsxə yalnız bərpa sınağı ilə etibarlı müdafiə tədbirinə çevrilir."},
+ {q:"Universitet portalı işləmir. Düzgün davranış hansıdır?",a:["Hadisəni qeydiyyata alıb məsul texniki heyətə bildirirəm","Bütün serverləri xəbərdarlıq etmədən söndürürəm","Jurnalları silirəm"],ok:0,why:"Sənədləşdirmə və məsul heyətə bildiriş koordinasiyalı bərpaya kömək edir."}
+];
+function labRenderAwareness(){
+ $("labAwarenessQuiz").innerHTML=labAwQuestions.map((q,i)=>`<div class="labquestion"><b>${i+1}. ${q.q}</b><div>${q.a.map((a,j)=>`<button type="button" class="secondary ${labState.answers[i]===j?"selected":""}" onclick="labAnswer(${i},${j})">${a}</button>`).join("")}</div><div class="labfeedback" id="labFeed${i}"></div></div>`).join("");
+ labAwQuestions.forEach((q,i)=>{if(labState.answers[i]!==undefined)$("labFeed"+i).textContent=(labState.answers[i]===q.ok?"✓ Düzgün. ":"✗ Yenidən nəzərdən keçirin. ")+q.why});
+ const n=Object.keys(labState.answers).length,score=labAwQuestions.filter((q,i)=>labState.answers[i]===q.ok).length;
+ $("labAwarenessScore").textContent=`Cavablandırılan: ${n}/${labAwQuestions.length}; düzgün: ${score}/${labAwQuestions.length}. ${n===labAwQuestions.length?"Test tamamlandı.":"Bütün situasiyaları cavablandırın."}`;
+}
+function labAnswer(i,j){labState.answers[i]=j;labRenderAwareness()}
+function labResetAwareness(){labState.answers={};labRenderAwareness()}
+function labReport(){
+ const e=labEvents[$("labEvent").value],p=+$("labLikelihood").value,s=+$("labSeverity").value,m=$("labMitigation").value;
+ const d={none:[0,0],mfa:[2,0],access:[1,1],backup:[0,2],monitor:[1,0]}[m],r=Math.max(1,p-d[0])*Math.max(1,s-d[1]);
+ const n=Object.keys(labState.answers).length,correct=labAwQuestions.filter((q,i)=>labState.answers[i]===q.ok).length;
+ labState.report=`LABORATORİYA İŞİ № 1\nİşin adı: İnformasiya təhlükəsizliyinin CIA modelinin interaktiv simulyasiyası və təşkilati risklərin qiymətləndirilməsi\n\nİşin məqsədi: CIA modelinin tətbiqi, risklərin hesablanması və təhlükəsizlik siyasətinin layihələndirilməsi.\n\n1. CIA HADİSƏSİ\n${e.title}. ${e.details}\n\n2. RİSK QİYMƏTLƏNDİRMƏSİ\nAktiv: ${$("labAsset").value}\nZəiflik: ${$("labWeak").value}\nİlkin risk: ${p} × ${s} = ${p*s}/25\nQalıq risk: ${r}/25\nNəzarət: ${$("labMitigation").selectedOptions[0].textContent}\n\n3. İNSİDENTƏ CAVAB\nDüzgün qərarlar: ${labState.points}/3; mərhələ: ${Math.min(labState.story,3)}/3\n\n4. TƏHLÜKƏSİZLİK SİYASƏTİ\n${labState.policy}\n\n5. MƏLUMATLILIQ TESTİ\nCavablandırılan: ${n}/4, düzgün: ${correct}/4\n\nYEKUN: Nəticələr virtual tədris simulyasiyasından əldə olunub; real sistemlərin audit nəticəsi deyil.`;
+ $("labReportOut").innerHTML='<pre class="labreport"></pre>';$("labReportOut").querySelector("pre").textContent=labState.report;
+}
+function labPrintReport(){labReport();const w=window.open("","_blank");if(!w){window.print();return}w.document.write('<!doctype html><html lang="az"><meta charset="utf-8"><title>Laboratoriya hesabatı</title><style>body{font:15px/1.6 Arial;padding:32px;max-width:850px;margin:auto}pre{white-space:pre-wrap;font:inherit}</style><pre id="out"></pre></html>');w.document.getElementById("out").textContent=labState.report;w.document.close();w.focus();w.print()}
+labRunCIA();labRisk();labResetStory();labPolicy();labRenderAwareness();
+</script></body></html>

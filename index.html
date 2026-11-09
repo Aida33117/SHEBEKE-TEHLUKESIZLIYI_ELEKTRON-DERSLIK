@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="az"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Şəbəkə təhlükəsizliyi — vahid interaktiv elektron dərslik, 10 modul və giriş bölməsi">
+<title>Şəbəkə təhlükəsizliyi — Vahid elektron dərslik</title>
+<style>
+:root{--navy:#102747;--blue:#2463a6;--cyan:#22a6a1;--gold:#e7a93b;--ink:#1d2b3f;--muted:#64748b;--paper:#fff;--bg:#eef3f9;--line:#dce5ef;--soft:#eaf2fb;--shadow:0 16px 42px rgba(16,39,71,.11)}
+[data-theme=dark]{--ink:#e8eef8;--muted:#aab8cb;--paper:#17263a;--bg:#0c1727;--line:#2b3e57;--soft:#203650;--shadow:0 16px 42px rgba(0,0,0,.25)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Arial,sans-serif}
+header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.top{max-width:1600px;margin:auto;padding:12px 22px;display:flex;align-items:center;gap:12px}.brand{font-weight:800;letter-spacing:.04em;color:var(--navy)}[data-theme=dark] .brand{color:#d6e7ff}
+.brand small{display:block;color:var(--muted);font-size:11px;font-weight:500;letter-spacing:.02em}
+.grow{flex:1}button{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:9px 12px;border-radius:9px;cursor:pointer;font-weight:650}button:hover{border-color:var(--cyan);color:var(--blue)}.progress{height:3px;background:var(--line)}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--blue));transition:width .2s}
+.layout{max-width:1600px;margin:20px auto;padding:0 18px;display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;align-items:start}
+aside{position:sticky;top:83px;max-height:calc(100vh - 100px);overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+aside h2{font-size:12px;letter-spacing:.13em;color:var(--muted);margin:3px 8px 12px}#filter{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);margin-bottom:12px}
+nav a{display:block;text-decoration:none;color:var(--muted);padding:9px 10px;border-radius:9px;margin:3px 0;font-size:13px;line-height:1.4}nav a:hover,nav a.active{background:var(--soft);color:var(--blue);font-weight:700}nav a .tag{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);font-weight:800;margin-bottom:2px}
+main{min-width:0}.frame-wrap{background:var(--paper);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:var(--shadow);min-height:calc(100vh - 120px)}
+#reader{display:block;width:100%;height:calc(100vh - 120px);min-height:720px;border:0;background:white}
+.welcome{padding:clamp(20px,4vw,50px);background:var(--paper);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(220px,.9fr);gap:25px;align-items:center}
+.hero img{width:100%;height:auto;border-radius:12px;box-shadow:var(--shadow)}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;color:var(--cyan);text-transform:uppercase}
+h1,h2,h3{color:var(--navy);line-height:1.25}[data-theme=dark] h1,[data-theme=dark] h2,[data-theme=dark] h3{color:#d6e7ff}h1{font-size:clamp(28px,4vw,46px);margin:.3em 0}.lead{font-size:17px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}.stat{padding:15px;background:var(--bg);border:1px solid var(--line);border-radius:12px}.stat b{display:block;font-size:24px;color:var(--blue)}.stat span{font-size:12px;color:var(--muted)}
+.module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.module-card{text-align:left;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink)}.module-card b{display:block;color:var(--blue);margin-bottom:5px}.module-card span{font-size:13px;color:var(--muted)}
+.footer{margin-top:28px;border-top:1px solid var(--line);padding-top:15px;color:var(--muted);font-size:12px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}aside{position:relative;top:auto;max-height:none}nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}#reader{height:80vh;min-height:650px}.hero{grid-template-columns:1fr}.hero img{max-width:560px;margin:auto}}
+@media(max-width:560px){.top{padding:9px 10px;gap:6px;flex-wrap:wrap}.brand{font-size:12px}.top button{padding:7px 8px;font-size:11px}.layout{padding:0 8px;margin:10px auto}nav{grid-template-columns:1fr}.module-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}#reader{min-height:75vh}}
+@media print{header,aside,.no-print{display:none!important}.layout{display:block;margin:0;padding:0}.frame-wrap{border:0;box-shadow:none}#reader{height:auto;min-height:0}}
+
+#coverScreen{position:fixed;inset:0;z-index:1000;background:linear-gradient(145deg,#07182d,#12395e);display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.cover-stage{width:min(100%,520px);display:flex;flex-direction:column;align-items:center;gap:16px}
+.cover-stage img{display:block;width:auto;height:min(76vh,850px);max-width:100%;object-fit:contain;border-radius:5px;box-shadow:0 28px 70px rgba(0,0,0,.48)}
+.cover-enter{min-width:220px;padding:13px 24px;border:1px solid rgba(255,255,255,.55);background:#f7fbff;color:#102747;border-radius:30px;font-size:15px;font-weight:800;box-shadow:0 8px 25px #0004}
+.cover-caption{color:#dcecff;font-size:12px;text-align:center;letter-spacing:.04em}
+@media(max-width:600px){
+ #coverScreen{padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
+ .cover-stage{width:100%;height:100%;justify-content:center;gap:12px}
+ .cover-stage img{height:min(78dvh,820px);width:auto;max-width:94vw;object-fit:contain}
+ .cover-enter{width:min(88vw,360px);padding:14px;font-size:16px}
+ .cover-caption{font-size:11px}
+}
+
+.cover-mode-actions{width:min(100%,420px);display:grid;grid-template-columns:1fr;gap:8px}
+.cover-enter.secondary{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.6)}
+@media(max-width:600px){.cover-stage img{height:min(66dvh,700px)}.cover-mode-actions{gap:7px}.cover-enter{width:100%;font-size:14px;padding:11px 15px}}
+</style></head>
+<body><div id="coverScreen" role="dialog" aria-label="Şəbəkə təhlükəsizliyi kitabının üz qabığı və oxu rejimləri">
+ <div class="cover-stage">
+  <img src="assets/cover_realistic.png" alt="A. Mustafayeva — Şəbəkə təhlükəsizliyi, Nəzəriyyə və praktika, 2026">
+  <div class="cover-caption">Mingəçevir Dövlət Universiteti · 2026</div>
+  <div class="cover-mode-actions">
+   <button class="cover-enter" onclick="openIntroMode('normal')">Kitabı oxumağa başla</button>
+   <button class="cover-enter secondary" onclick="openIntroMode('focus')">Sakit oxu rejimi</button>
+   <button class="cover-enter secondary" onclick="openIntroMode('contents')">Mündəricatla başla</button>
+  </div>
+ </div>
+</div>
+<header><div class="top"><div class="brand">MDU · ŞƏBƏKƏ TƏHLÜKƏSİZLİYİ<small>VAHİD İNTERAKTİV ELEKTRON DƏRSLİK · NƏZƏRİYYƏ VƏ PRAKTİKA</small></div><div class="grow"></div><button onclick="changeFont(-1)" title="Şrift ölçüsünü kiçilt">A−</button><button onclick="changeFont(1)" title="Şrift ölçüsünü böyüt">A+</button><button onclick="toggleTheme()">◐ Rejim</button><button onclick="showCover()">Üz qabığı</button><button onclick="printCurrent()">Çap / PDF</button></div><div class="progress"><span id="progressBar"></span></div></header>
+<div class="layout">
+<aside><h2>DƏRSLİYİN MÜNDƏRİCATI</h2><input id="filter" placeholder="Giriş və modulları axtar..." oninput="filterModules()"><nav id="moduleNav"></nav></aside>
+<main><div class="frame-wrap" id="frameWrap" style="display:none"><iframe id="reader" title="Elektron dərsliyin bölməsi" loading="eager"></iframe></div>
+<section class="welcome" id="welcome">
+<div class="hero"><div><div class="eyebrow">Mingəçevir Dövlət Universiteti</div><h1>Şəbəkə təhlükəsizliyi</h1><p class="lead">Nəzəriyyə və praktika üzrə vahid interaktiv elektron dərslik</p><p>Bu elektron dərslik giriş bölməsini və 1–10-cu modulları vahid mündəricat, ortaq naviqasiya və ardıcıl oxu mühiti daxilində birləşdirir. Nəzəri izahlar, sxemlər, laboratoriya işləri, interaktiv simulyasiyalar və yoxlama tapşırıqları bir platformada təqdim olunur.</p><p><b>Müəllif:</b> A. Mustafayeva</p><p><b>Əsas ədəbiyyat:</b> A. Mustafayeva. <i>Şəbəkə təhlükəsizliyi.</i> Bakı, 2024, 321 s.</p><button class="primary" onclick="openModule(0)">Dərsliyə başla →</button></div><div><img src="intro/assets/Sebeke_TehluKesizliyi_Uzluyu.png" alt="Şəbəkə təhlükəsizliyi elektron dərsliyinin üz qabığı"></div></div>
+<div class="stats"><div class="stat"><b>10</b><span>Tədris modulu</span></div><div class="stat"><b>11</b><span>Giriş + modullar</span></div><div class="stat"><b>İnteraktiv</b><span>Laboratoriya və sınaqlar</span></div></div>
+<h2>Elektron dərsliyin strukturu</h2><p>Öyrənmə ardıcıllığı təhlükəsizliyin əsas anlayışlarından başlayaraq şəbəkə avadanlıqları, topologiyalar, idarəetmə, təhlükəsizlik arxitekturası, simsiz şəbəkələr, AAA, təhdidlər, firewall və IDS/IPS-SIEM-SOC mexanizmlərinə qədər davam edir.</p>
+<div class="module-grid" id="moduleCards"></div>
+<div class="footer">Mingəçevir Dövlət Universiteti · Şəbəkə təhlükəsizliyi · A. Mustafayeva</div>
+</section></main></div>
+<script>
+function openIntroMode(mode){
+ document.getElementById('coverScreen').style.display='none';
+ document.getElementById('welcome').style.display='none';
+ document.getElementById('frameWrap').style.display='block';
+ const frame=document.getElementById('reader');
+ frame.src='intro/index.html?mode='+encodeURIComponent(mode);
+ document.querySelectorAll('#moduleNav a').forEach(a=>a.classList.toggle('active',a.dataset.index==='0'));
+ document.getElementById('progressBar').style.width=(1/modules.length*100)+'%';
+ document.title='Giriş və oxu rejimi | Şəbəkə təhlükəsizliyi';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function showCover(){document.getElementById('coverScreen').style.display='flex';}
+function enterBook(){document.getElementById('coverScreen').style.display='none';window.scrollTo({top:0,behavior:'instant'});}
+const modules=[{"label": "Giriş", "name": "Giriş və metodiki göstərişlər", "src": "intro/index.html"}, {"label": "Modul 1", "name": "Təhlükəsizliyin əsasları", "src": "modules/01_T_hl_k_sizliyin_saslar/index.html"}, {"label": "Modul 2", "name": "Şəbəkə cihazları və texnologiyaları", "src": "modules/02_b_k_cihazlar_v_texnologiyalar/Network_Module2_Interactive/index.html"}, {"label": "Modul 3", "name": "Şəbəkə topologiyası", "src": "modules/03_b_k_topologiyas/Modul_3_Sebeke_Topologiyasi_Interaktiv/index.html"}, {"label": "Modul 4", "name": "Şəbəkənin idarə edilməsi", "src": "modules/04_b_k_nin_idar_edilm_si/index.html"}, {"label": "Modul 5", "name": "Şəbəkə təhlükəsizliyinə giriş", "src": "modules/05_b_k_t_hl_k_sizliyin_giri/index.html"}, {"label": "Modul 6", "name": "Simsiz (Wi-Fi) təhlükəsizlik", "src": "modules/06_Simsiz_Wi_Fi_t_hl_k_sizlik/index.html"}, {"label": "Modul 7", "name": "Autentifikasiya, avtorizasiya və şəbəkə təhlükəsizliyi auditi", "src": "modules/07_Autentifikasiya_avtorizasiya_v_b_k_t_hl_k_sizliyi_auditi/modul7_auth_audit/index.html"}, {"label": "Modul 8", "name": "Ümumi təhdidlər və zəifliklər", "src": "modules/08_mumi_t_hdidl_r_v_z_iflikl_r/Modul_8_Interactive_Lab/index.html"}, {"label": "Modul 9", "name": "Firewall – şəbəkələrarası ekranlaşdırma", "src": "modules/09_Firewall_b_k_l_raras_ekranla_d_rma/Modul_9_Firewall/index.html"}, {"label": "Modul 10", "name": "MAS (IDS)/MQS (IPS) sistemləri", "src": "modules/10_MAS_IDS_MQS_IPS_sisteml_ri/Modul_10_IDS_IPS_SOC/index.html"}];
+const nav=document.getElementById('moduleNav');
+const cards=document.getElementById('moduleCards');
+modules.forEach((m,i)=>{
+ const a=document.createElement('a');a.href='#';a.dataset.index=i;a.innerHTML='<span class="tag">'+m.label+'</span>'+m.name;a.onclick=e=>{e.preventDefault();openModule(i)};nav.appendChild(a);
+ const c=document.createElement('button');c.className='module-card';c.innerHTML='<b>'+m.label+' · '+m.name+'</b><span>Bölməni aç və oxumağa başla →</span>';c.onclick=()=>openModule(i);cards.appendChild(c);
+});
+function openModule(i){
+ const m=modules[i];document.getElementById('welcome').style.display='none';document.getElementById('frameWrap').style.display='block';
+ const frame=document.getElementById('reader');frame.src=m.src;
+ document.querySelectorAll('#moduleNav a').forEach(a=>a.classList.toggle('active',+a.dataset.index===i));
+ document.getElementById('progressBar').style.width=((i+1)/modules.length*100)+'%';
+ document.title=m.label+' — '+m.name+' | Şəbəkə təhlükəsizliyi';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function filterModules(){const q=document.getElementById('filter').value.toLowerCase();document.querySelectorAll('#moduleNav a').forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?'block':'none');}
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark';}
+let fontScale=1;function changeFont(d){fontScale=Math.max(.85,Math.min(1.25,fontScale+d*.05));document.getElementById('reader').style.zoom=fontScale;}
+function printCurrent(){const f=document.getElementById('reader');if(f.contentWindow && document.getElementById('frameWrap').style.display!=='none')f.contentWindow.print();else window.print();}
+</script></body></html>

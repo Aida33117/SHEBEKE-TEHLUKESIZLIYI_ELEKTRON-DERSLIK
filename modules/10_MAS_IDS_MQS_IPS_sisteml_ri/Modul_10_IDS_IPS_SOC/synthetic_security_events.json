@@ -1,0 +1,47 @@
+[
+  {
+    "timestamp": "2026-11-09T09:14:02",
+    "source": "firewall",
+    "src_ip": "192.0.2.44",
+    "host": "edge-fw",
+    "event": "blocked_connection",
+    "severity": "medium",
+    "status": "blocked"
+  },
+  {
+    "timestamp": "2026-11-09T09:14:08",
+    "source": "snort",
+    "src_ip": "192.0.2.44",
+    "host": "sensor-01",
+    "event": "signature_match",
+    "severity": "high",
+    "status": "alert"
+  },
+  {
+    "timestamp": "2026-11-09T09:14:15",
+    "source": "linux_auth",
+    "src_ip": "192.0.2.44",
+    "host": "linux-db-02",
+    "event": "failed_login",
+    "severity": "high",
+    "status": "failed"
+  },
+  {
+    "timestamp": "2026-11-09T09:14:21",
+    "source": "wazuh",
+    "src_ip": "192.0.2.44",
+    "host": "manager",
+    "event": "correlated_alert",
+    "severity": "critical",
+    "status": "alert"
+  },
+  {
+    "timestamp": "2026-11-09T09:20:01",
+    "source": "suricata",
+    "src_ip": "192.0.2.99",
+    "host": "sensor-02",
+    "event": "dns_anomaly",
+    "severity": "medium",
+    "status": "alert"
+  }
+]

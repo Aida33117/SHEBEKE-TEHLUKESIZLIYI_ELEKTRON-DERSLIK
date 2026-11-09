@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Şəbəkə təhlükəsizliyi – Modul 3: Şəbəkə topologiyası. İnteraktiv veb dərslik və laboratoriya simulyatoru.">
+<title>Modul 3 — Şəbəkə topologiyası</title>
+<style>
+:root{--navy:#10233f;--blue:#1769aa;--cyan:#21b6c7;--gold:#e8b44a;--ink:#1d2b3d;--muted:#63748a;--bg:#f3f6fb;--card:#fff;--line:#dce5ef;--soft:#eaf3fb;--good:#16845b;--bad:#bd4545;--shadow:0 12px 32px #10233f12}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}button,select,input{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 15px;background:var(--blue);color:#fff;font-weight:650}button.secondary{background:#e8eef6;color:var(--navy)}button.gold{background:var(--gold);color:#18283d}button.danger{background:#a83e45}a{color:var(--blue)}.top{background:linear-gradient(115deg,#10233f,#174e7c 65%,#168a9b);color:#fff;padding:28px max(22px,calc((100% - 1380px)/2));position:relative}.top small{letter-spacing:.12em;text-transform:uppercase;color:#b9dce9}.top h1{font-size:clamp(28px,4vw,44px);line-height:1.12;margin:10px 0}.top p{max-width:850px;color:#e2edf6;margin:8px 0 18px}.meta{display:flex;gap:9px;flex-wrap:wrap}.meta span{border:1px solid #ffffff42;border-radius:30px;padding:5px 11px;font-size:13px}.progress{height:5px;background:#ffffff35;margin-top:20px;border-radius:9px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--gold);transition:width .2s}
+.shell{max-width:1380px;margin:auto;display:grid;grid-template-columns:275px minmax(0,1fr);gap:24px;padding:24px 20px}.side{position:sticky;top:14px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);max-height:calc(100vh - 28px);overflow:auto}.side b{display:block;color:var(--navy);margin:4px 8px 10px}.side a{display:block;text-decoration:none;color:#40536a;padding:8px 10px;border-radius:8px;font-size:14px}.side a:hover,.side a.active{background:var(--soft);color:var(--blue);font-weight:700}.side .tools{display:flex;gap:7px;margin-top:14px}.side button{flex:1;padding:8px;font-size:13px}.content{min-width:0}.hero-card,.section,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}.hero-card{background:linear-gradient(135deg,#fff,#edf7fb)}h2{color:var(--navy);font-size:25px;margin:0 0 12px}h3{color:#174e7c;margin:22px 0 8px}h4{margin:12px 0 5px;color:var(--navy)}p{margin:8px 0 12px}.lead{font-size:18px;color:#40536a}.tag{display:inline-block;background:#eaf4fa;color:#1769aa;padding:4px 9px;border-radius:20px;font-size:12px;font-weight:700}.callout{border-left:4px solid var(--cyan);background:#eff9fb;padding:13px 16px;border-radius:0 10px 10px 0;margin:14px 0}.warning{border-left-color:var(--gold);background:#fff8e9}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.mini{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}.mini strong{color:var(--navy)}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#edf4fa;color:var(--navy)}.diagram{width:100%;height:auto;background:#f7fafd;border:1px solid var(--line);border-radius:12px;margin:12px 0}.step{display:flex;gap:12px;margin:12px 0}.num{width:30px;height:30px;flex:0 0 30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}.sim{border:1px solid #c9d9e8;border-radius:14px;padding:16px;background:#f8fbfe;margin:14px 0}.controls{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:10px 0}.controls label{font-size:14px;color:#4a5d72}.controls select,.controls input{padding:9px 10px;border:1px solid #c8d5e2;border-radius:9px;background:#fff;color:var(--ink)}.result{padding:12px;border-radius:10px;background:#eaf4fb;margin-top:10px;min-height:44px}.ok{color:var(--good);font-weight:700}.err{color:var(--bad);font-weight:700}.network{width:100%;height:350px;background:linear-gradient(#f9fcff,#eff5fa);border:1px solid var(--line);border-radius:12px}.node{cursor:pointer}.node circle,.node rect{stroke:#1769aa;stroke-width:2;fill:#fff}.node text{font-size:12px;fill:#173653;text-anchor:middle;font-weight:650;pointer-events:none}.node.off circle,.node.off rect{fill:#ffe5e5;stroke:#bd4545;stroke-dasharray:4 3}.link{stroke:#3f8db5;stroke-width:3;fill:none}.link.down{stroke:#bd4545;stroke-dasharray:7 6;opacity:.35}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:#16845b}.dot.red{background:#bd4545}.choice{display:block;border:1px solid var(--line);border-radius:10px;padding:10px;margin:7px 0;cursor:pointer}.choice:has(input:checked){border-color:var(--blue);background:#eef6fc}.feedback{font-size:14px;margin-top:8px;padding:9px;border-radius:8px}.quizq{border:1px solid var(--line);border-radius:13px;padding:16px;margin:14px 0}.quizq h4{margin-top:0}.muted{color:var(--muted);font-size:14px}.score{font-size:22px;color:var(--navy);font-weight:800}.footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}.dark{--bg:#101a29;--card:#182638;--ink:#e5edf6;--muted:#a6b5c6;--line:#33485e;--soft:#233d56;--navy:#d8eaff}.dark .hero-card,.dark .sim,.dark .mini,.dark .quizq{background:#1c3045}.dark th{background:#243d56;color:#e5edf6}.dark .controls select,.dark .controls input{background:#142337;color:#fff}.dark .network{background:#20364b}.dark .node circle,.dark .node rect{fill:#dbeeff}.dark .node text{fill:#173653}.dark .result,.dark .callout{background:#213d50;color:#e5edf6}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.side{position:relative;top:0;max-height:none}.side nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.shell{padding:12px}.hero-card,.section,.panel{padding:17px}.grid2,.grid3{grid-template-columns:1fr}.top{padding:24px 18px}.side nav{grid-template-columns:1fr 1fr}.network{height:300px}}
+@media print{.side,.controls button,.top .progress{display:none!important}.shell{display:block;padding:0}.hero-card,.section,.panel{box-shadow:none;break-inside:avoid}.top{background:#fff;color:#111;padding:10px}.top p,.top small{color:#333}body{background:#fff}}
+</style>
+</head>
+<body>
+<header class="top">
+ <small>ŞƏBƏKƏ TƏHLÜKƏSİZLİYİ · İNTERAKTİV ELEKTRON DƏRSLİK</small>
+ <h1>MODUL 3. ŞƏBƏKƏ TOPOLOGİYASI</h1>
+ <p>Üç korpuslu, hər korpusu üçmərtəbəli universitet üçün təhlükəsiz, dayanıqlı və genişlənə bilən kompüter şəbəkəsinin layihələndirilməsi.</p>
+ <div class="meta"><span>3 korpus · 3 mərtəbə</span><span>Topologiya və Ethernet</span><span>Laboratoriya № 3</span><span>İnteraktiv simulyatorlar</span></div>
+ <div class="progress"><i id="progressBar"></i></div>
+</header>
+<div class="shell">
+<aside class="side">
+ <b>MODULUN MÜNDƏRİCATI</b>
+ <nav>
+ <a href="#intro">Modulun məqsədi</a><a href="#s31">3.1. Şəbəkə dizaynı və topologiyalar</a>
+ <a href="#s32">3.2. Fiziki bağlantı problemləri</a><a href="#s33">3.3. Ethernet standartları</a>
+ <a href="#s34">3.4. Naqillərin paylanması</a><a href="#s35">3.5. Yoxlama sualları</a>
+ <a href="#s36">3.6. Praktiki tapşırıq</a><a href="#lab">Laboratoriya işi № 3</a><a href="#refs">Ədəbiyyat</a>
+ </nav>
+ <div class="tools"><button class="secondary" onclick="toggleTheme()">◐ Rejim</button><button class="secondary" onclick="window.print()">PDF / Çap</button></div>
+ <div class="tools"><button class="secondary" onclick="changeFont(-1)">A−</button><button class="secondary" onclick="changeFont(1)">A+</button></div>
+</aside>
+<main class="content">
+<section id="intro" class="hero-card">
+ <span class="tag">ÖYRƏNMƏ SƏNARİSİ</span><h2>Universitet kampusunun şəbəkəsi</h2>
+ <p class="lead">Təsəvvür edin ki, universitetin üç ayrı korpusu var. Hər korpus üç mərtəbədən ibarətdir. Rektorluq, fakültələr, laboratoriyalar, kitabxana, auditoriyalar, müəllim və tələbə kompüterləri vahid şəbəkə üzərindən işləməlidir.</p>
+ <div class="grid3">
+  <div class="mini"><strong>Korpus A</strong><p>Rektorluq, inzibati şöbələr, server otağı və kitabxana.</p></div>
+  <div class="mini"><strong>Korpus B</strong><p>Fakültələr, müəllim otaqları, kompüter laboratoriyaları.</p></div>
+  <div class="mini"><strong>Korpus C</strong><p>Tədris auditoriyaları, tələbə laboratoriyaları, konfrans zalı.</p></div>
+ </div>
+ <div class="callout warning"><b>Layihə şərti:</b> Korpuslar arasında magistral bağlantı, mərtəbələr üzrə paylayıcı kommutatorlar, VLAN-larla məntiqi seqmentləşdirmə, server və idarəetmə şəbəkəsinin ayrılması, ehtiyat bağlantı və fiziki girişə nəzarət nəzərdə tutulmalıdır. Bu, tədris nümunəsidir; real layihədə kabel məsafələri, bina planı, yanğın normaları və avadanlıq istehsalçısının tələbləri ayrıca yoxlanılır.</div>
+ <h3>Öyrənmə nəticələri</h3>
+ <ul><li>Ulduz, şin, halqa, ağac və mesh topologiyalarını qurmaq və müqayisə etmək;</li><li>fiziki və məntiqi bağlantıların fərqini izah etmək;</li><li>Ethernet sürətinə və məsafəyə uyğun kabel/standart seçmək;</li><li>kabel, konnektor, port və avadanlıq nasazlığını diaqnostika etmək;</li><li>kampus şəbəkəsini təhlükəsizlik və dayanıqlılıq meyarları ilə layihələndirmək.</li></ul>
+</section>
+<section id="s31" class="section">
+ <span class="tag">3.1</span><h2>Şəbəkə dizaynı və topologiyalar</h2>
+ <p>Şəbəkə topologiyası cihazların fiziki və ya məntiqi əlaqələndirilmə quruluşudur. Fiziki topologiya kabel və qurğuların real yerləşməsini, məntiqi topologiya isə məlumatın şəbəkədə hansı qayda ilə hərəkət etdiyini göstərir. Layihələndirmə zamanı performans, funksionallıq, çeviklik, tutum, əlçatanlıq və miqyaslana bilmə nəzərə alınır.</p>
+ <div class="grid2">
+  <div class="mini"><strong>Fiziki topologiya</strong><p>Kommutatorların, marşrutlaşdırıcıların, serverlərin, kabel kanallarının və son qurğuların real bağlantısı.</p></div>
+  <div class="mini"><strong>Məntiqi topologiya</strong><p>VLAN, IP şəbəkələri, marşrutlaşdırma, trafik axını və giriş qaydaları ilə müəyyən edilən əlaqə.</p></div>
+ </div>
+ <h3>Topologiyaların müqayisəsi</h3>
+ <div class="tablewrap"><table><thead><tr><th>Topologiya</th><th>Quruluş</th><th>Üstünlük</th><th>Məhdudiyyət / risk</th><th>Kampusda tətbiq</th></tr></thead><tbody>
+ <tr><td><b>Star (Ulduz)</b></td><td>Son qurğular mərkəzi switch-ə qoşulur.</td><td>İdarəetmə və nasazlığın lokallaşdırılması asandır.</td><td>Mərkəzi switch sıradan çıxarsa seqment dayanır.</td><td>Mərtəbə üzrə LAN.</td></tr>
+ <tr><td><b>Bus (Şin)</b></td><td>Qurğular ortaq magistral xətti paylaşır.</td><td>Tarixi baxımdan sadə quruluş.</td><td>Magistral kabel nasazlığı bütün seqmentə təsir edir; toqquşmalar mümkündür.</td><td>Müasir kampus LAN-ı üçün tövsiyə edilmir.</td></tr>
+ <tr><td><b>Ring (Halqa)</b></td><td>Qovşaqlar qapalı zəncir təşkil edir.</td><td>İdarə olunan ötürmə mexanizmi qurula bilər.</td><td>Tək istiqamətli sadə halqada qırılma əlaqəni poza bilər.</td><td>Ehtiyatlı halqa magistralının konseptual modeli.</td></tr>
+ <tr><td><b>Tree (Ağac)</b></td><td>İyerarxik nüvə–paylayıcı–giriş qatları.</td><td>Böyük şəbəkədə miqyaslana və idarə oluna bilir.</td><td>Yuxarı qatdakı nasazlıq çoxsaylı aşağı seqmentlərə təsir edə bilər.</td><td>Üç korpuslu kampus üçün əsas tövsiyə.</td></tr>
+ <tr><td><b>Mesh (Tor)</b></td><td>Qovşaqlar arasında çoxsaylı alternativ yollar.</td><td>Yüksək dayanıqlılıq və alternativ marşrutlar.</td><td>Kabel, port və idarəetmə xərci artır.</td><td>Korpuslararası magistralda qismən mesh.</td></tr>
+ </tbody></table></div>
+ <h3>Üç korpuslu kampus üçün tövsiyə olunan hibrid ağac topologiyası</h3>
+ <svg class="diagram" viewBox="0 0 900 390" role="img" aria-label="Üç korpuslu universitet şəbəkəsinin iyerarxik topologiyası">
+ <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#3f8db5"/></marker></defs>
+ <rect x="345" y="18" width="210" height="48" rx="12" fill="#102f52"/><text x="450" y="47" fill="white" text-anchor="middle" font-size="16">Nüvə L3 Switch / Firewall</text>
+ <g stroke="#3f8db5" stroke-width="3" fill="none"><path d="M450 66 V105 H155 V135 M450 105 V135 M450 105 H745 V135"/></g>
+ <g><rect x="65" y="135" width="180" height="44" rx="9" fill="#dceefa" stroke="#1769aa"/><rect x="360" y="135" width="180" height="44" rx="9" fill="#dceefa" stroke="#1769aa"/><rect x="655" y="135" width="180" height="44" rx="9" fill="#dceefa" stroke="#1769aa"/>
+ <text x="155" y="162" text-anchor="middle" fill="#173653" font-size="15">Korpus A · Paylayıcı</text><text x="450" y="162" text-anchor="middle" fill="#173653" font-size="15">Korpus B · Paylayıcı</text><text x="745" y="162" text-anchor="middle" fill="#173653" font-size="15">Korpus C · Paylayıcı</text></g>
+ <g stroke="#3f8db5" stroke-width="2.5" fill="none"><path d="M155 179 V220 H90 V250 M155 220 V250 M155 220 H220 V250 M450 179 V220 H385 V250 M450 220 V250 M450 220 H515 V250 M745 179 V220 H680 V250 M745 220 V250 M745 220 H810 V250"/></g>
+ <g fill="#fff" stroke="#21a0b5" stroke-width="2"><rect x="40" y="250" width="100" height="42" rx="8"/><rect x="170" y="250" width="100" height="42" rx="8"/><rect x="335" y="250" width="100" height="42" rx="8"/><rect x="465" y="250" width="100" height="42" rx="8"/><rect x="630" y="250" width="100" height="42" rx="8"/><rect x="760" y="250" width="100" height="42" rx="8"/></g>
+ <g fill="#173653" font-size="12" text-anchor="middle"><text x="90" y="275">A · mərtəbə 1</text><text x="220" y="275">A · mərtəbə 2–3</text><text x="385" y="275">B · mərtəbə 1</text><text x="515" y="275">B · mərtəbə 2–3</text><text x="680" y="275">C · mərtəbə 1</text><text x="810" y="275">C · mərtəbə 2–3</text></g>
+ <text x="450" y="335" text-anchor="middle" fill="#52677d" font-size="14">Hər mərtəbə switch-indən kompüterlər, AP-lər, IP telefonlar və printerlərə ulduz bağlantısı</text>
+ </svg>
+ <div class="callout"><b>Təhlükəsizlik dizaynı:</b> tələbə, müəllim, inzibati heyət, qonaq Wi‑Fi, server və şəbəkə idarəetməsi üçün ayrıca VLAN/altşəbəkələr; girişlərarası firewall qaydaları; 802.1X imkanları; port security; DHCP snooping və uyğun şəbəkə nəzarətləri nəzərdə tutula bilər. Bu funksiyaların dəstəyi avadanlıq modelindən asılıdır.</div>
+ <h3>Öyrədici topologiya simulyatoru</h3>
+ <div class="sim">
+  <p>Topologiya növünü seçin, qovşağa klikləyərək onu söndürün və alternativ yolun olub-olmadığını müşahidə edin.</p>
+  <div class="controls"><label>Topologiya <select id="topology" onchange="drawTopology()"><option value="star">Star — Ulduz</option><option value="bus">Bus — Şin</option><option value="ring">Ring — Halqa</option><option value="tree" selected>Tree — Ağac</option><option value="mesh">Mesh — Mesh</option></select></label><button class="secondary" onclick="resetTopology()">Bərpa et</button></div>
+  <svg id="topoSvg" class="network" viewBox="0 0 700 330" aria-label="İnteraktiv topologiya xəritəsi"></svg>
+  <div class="legend"><span><i class="dot"></i> Aktiv qovşaq</span><span><i class="dot red"></i> Söndürülmüş qovşaq</span><span>Qırmızı kəsik xətt — qeyri-aktiv bağlantı</span></div>
+  <div id="topoResult" class="result">Qovşağı seçərək bağlantı dayanıqlığını yoxlayın.</div>
+ </div>
+</section>
+<section id="s32" class="section">
+ <span class="tag">3.2</span><h2>Fiziki bağlantı problemlərinin aradan qaldırılması</h2>
+ <p>Fiziki səviyyədə nasazlıq kabelin qırılması, konnektorun düzgün sıxılmaması, portun sıradan çıxması, kabelin həddindən artıq bükülməsi, elektromaqnit maneə, fiber optik ucluğun çirklənməsi və ya enerji təchizatı problemi ilə bağlı ola bilər.</p>
+ <h3>Diaqnostikanın ardıcıllığı</h3>
+ <div class="step"><span class="num">1</span><div><b>Problemi müəyyən edin.</b> Hansı mərtəbə, korpus və istifadəçi qrupu təsirlənib? Tək qurğudur, yoxsa bütöv seqment?</div></div>
+ <div class="step"><span class="num">2</span><div><b>Fiziki yoxlama aparın.</b> Link LED, kabel, RJ‑45 konnektor, patch-panel portu, switch portu və enerji təchizatını yoxlayın.</div></div>
+ <div class="step"><span class="num">3</span><div><b>Test edin.</b> Kabel testeri ilə naqil düzülüşü və davamlılıq, uyğun halda OTDR ilə fiber xətt yoxlanılır.</div></div>
+ <div class="step"><span class="num">4</span><div><b>Nasazlığı lokallaşdırın.</b> Kabeli, patch cord-u və ya portu məlum işlək ehtiyatla dəyişərək səbəbi ayırd edin.</div></div>
+ <div class="step"><span class="num">5</span><div><b>Düzəliş və sənədləşdirmə.</b> Düzəlişdən sonra yenidən test edin, port/kabel etiketini və şəbəkə sxemini yeniləyin.</div></div>
+ <div class="grid2">
+ <div class="mini"><b>Açıq dövrə (Open)</b><p>Naqilin bir damarı qırılıb və elektrik davamlılığı yoxdur. Kabel testeri uyğun damarda əlaqə olmadığını göstərə bilər.</p></div>
+ <div class="mini"><b>Qısa qapanma (Short)</b><p>İki və ya daha çox damar arzuolunmaz şəkildə təmas edir. Testerdə səhv cütlük və ya qısa qapanma siqnalı görünə bilər.</p></div>
+ </div>
+ <h3>Nasazlıq inyeksiyası simulyatoru</h3>
+ <div class="sim">
+  <p>Universitetin B korpusunun 2-ci mərtəbəsində kompüter laboratoriyası internetə çıxmır. Nasazlıq növünü seçin, sonra diaqnostika addımını işə salın.</p>
+  <div class="controls"><label>Nasazlıq <select id="fault"><option value="unplug">Patch cord çıxıb</option><option value="open">Kabeldə açıq dövrə</option><option value="short">Kabeldə qısa qapanma</option><option value="port">Switch portu deaktivdir</option><option value="power">Mərtəbə switch-ində enerji yoxdur</option><option value="vlan">Yanlış VLAN təyini</option></select></label><button onclick="diagnose()">Diaqnostika et</button><button class="secondary" onclick="document.getElementById('faultOut').textContent='Nasazlıq seçin və diaqnostikanı başladın.'">Sıfırla</button></div>
+  <div id="faultOut" class="result">Nəticə burada görünəcək.</div>
+ </div>
+</section>
+<section id="s33" class="section">
+ <span class="tag">3.3</span><h2>Ethernet standartları</h2>
+ <p>Ethernet lokal şəbəkələrdə geniş istifadə olunan texnologiyadır. Standartın adı ötürmə sürəti, ötürmə mühiti və məsafə xüsusiyyətləri haqqında məlumat verir. Məsələn, 1000BASE‑T mis burulmuş cüt kabel üzərindən 1 Gbit/s sinfində Ethernet bağlantısını ifadə edir.</p>
+ <div class="tablewrap"><table><thead><tr><th>Standart</th><th>Nominal sürət</th><th>Media / qeyd</th><th>Tipik kampus tətbiqi</th></tr></thead><tbody>
+ <tr><td>10BASE‑T</td><td>10 Mbit/s</td><td>Mis burulmuş cüt</td><td>Köhnə qurğular; yeni layihədə seçilmir.</td></tr>
+ <tr><td>100BASE‑TX</td><td>100 Mbit/s</td><td>Mis burulmuş cüt</td><td>Köhnə son qurğular və xüsusi avadanlıq.</td></tr>
+ <tr><td>1000BASE‑T</td><td>1 Gbit/s</td><td>Mis burulmuş cüt</td><td>İstifadəçi portları və mərtəbə bağlantıları.</td></tr>
+ <tr><td>10GBASE‑T</td><td>10 Gbit/s</td><td>Mis burulmuş cüt; kabel kateqoriyası/məsafə vacibdir.</td><td>Yüksək tutumlu server və paylayıcı bağlantılar.</td></tr>
+ <tr><td>10GBASE‑SR / LR</td><td>10 Gbit/s</td><td>Fiber; SR qısa, LR daha uzun məsafə üçün</td><td>Korpuslararası və avadanlıq otaqları arası magistral.</td></tr>
+ </tbody></table></div>
+ <div class="callout warning"><b>Layihə qeydi:</b> dəqiq məsafə, fiber növü, transiver, kabel kateqoriyası və kanal tələbləri standartın və istehsalçı datasheet-inə əsasən yoxlanmalıdır. Buradakı cədvəl seçimə giriş üçündür.</div>
+ <h3>Kabel seçimi üzrə öyrədici simulyator</h3>
+ <div class="sim">
+ <div class="controls"><label>Bağlantı <select id="linkType"><option value="desk">Mərtəbədə kompüter → switch</option><option value="floor">Eyni korpusda mərtəbə switch-ləri</option><option value="building">Korpus A → Korpus B</option><option value="server">Server otağı → nüvə switch</option></select></label><label>Təxmini məsafə (m) <input id="distance" type="number" value="35" min="1" max="2000"></label><button onclick="chooseCable()">Seçimi yoxla</button></div>
+ <div id="cableOut" class="result">Bağlantı növü və məsafəni seçin.</div>
+ </div>
+</section>
+<section id="s34" class="section">
+ <span class="tag">3.4</span><h2>Naqillərin paylanması texnologiyası</h2>
+ <p>Strukturlaşdırılmış kabel sistemi iş sahəsi rozetkası, üfüqi kabel, telekommunikasiya otağı, patch-panel, magistral kabel və avadanlıq otağından ibarət planlı infrastrukturdur. Kabelin hər iki ucu etiketlənməli, patch-panel və switch portları sənədləşdirilməlidir.</p>
+ <h3>RJ‑45 üçün T568A və T568B rəng ardıcıllığı</h3>
+ <div class="grid2">
+  <div class="mini"><b>T568A (pin 1 → 8)</b><p>Yaşıl-ağ · Yaşıl · Narıncı-ağ · Mavi · Mavi-ağ · Narıncı · Qəhvəyi-ağ · Qəhvəyi</p></div>
+  <div class="mini"><b>T568B (pin 1 → 8)</b><p>Narıncı-ağ · Narıncı · Yaşıl-ağ · Mavi · Mavi-ağ · Yaşıl · Qəhvəyi-ağ · Qəhvəyi</p></div>
+ </div>
+ <p class="muted">Düz kabelin hər iki ucu eyni sxemlə (A–A və ya B–B) sonlandırılır. Krossover kabelin ucları fərqli sxemlə sonlandırıla bilər; müasir avadanlıqlarda Auto MDI‑X dəstəyi səbəbindən çox vaxt ayrıca krossover kabelə ehtiyac olmur.</p>
+ <h3>Naqil ardıcıllığı mini-laboratoriyası</h3>
+ <div class="sim">
+  <div class="controls"><label>Uç A <select id="endA"><option value="B">T568B</option><option value="A">T568A</option></select></label><label>Uç B <select id="endB"><option value="B">T568B</option><option value="A">T568A</option></select></label><button onclick="checkWiring()">Kabeli yoxla</button></div>
+  <div id="wiringOut" class="result">İki ucu seçin. Düz kabel və fərqli sonlandırma fərqini öyrənin.</div>
+ </div>
+ <h3>Avadanlıqların yerləşdirilməsi</h3>
+ <div class="grid3">
+  <div class="mini"><b>Server otağı</b><p>Nüvə switch, firewall, serverlər, UPS, rack, girişə nəzarət və soyutma.</p></div>
+  <div class="mini"><b>Telekommunikasiya otağı</b><p>Korpus/mərtəbə paylayıcı switch, patch-panel, kabel meneceri, UPS.</p></div>
+  <div class="mini"><b>İş sahəsi</b><p>İstifadəçi rozetkası, IP telefon, kompüter, printer və Wi‑Fi access point.</p></div>
+ </div>
+ <div class="callout"><b>Fiziki təhlükəsizlik:</b> server və telekommunikasiya otaqlarına giriş məhdudlaşdırılmalı, rack-lər kilidlənməli, kabel kanalları qorunmalı, ehtiyat enerji və temperatur monitorinqi təmin edilməlidir.</div>
+</section>
+<section id="s35" class="section">
+ <span class="tag">3.5</span><h2>Yoxlama sualları — ssenari əsaslı öyrənmə</h2>
+ <p>Hər sual universitet kampusundan real iş vəziyyətinə əsaslanır. Cavabı seçin və izahı oxuyun. Sualların sonunda ümumi nəticə hesablanır.</p>
+ <div id="quiz"></div>
+ <div class="controls"><button onclick="gradeQuiz()">Cavabları qiymətləndir</button><button class="secondary" onclick="resetQuiz()">Yenidən başla</button></div>
+ <div id="quizScore" class="result">10 ssenarini cavablandırdıqdan sonra nəticəniz burada görünəcək.</div>
+</section>
+<section id="s36" class="section">
+ <span class="tag">3.6</span><h2>Praktiki tapşırıq</h2>
+ <h3>Tapşırıq 1. Şəbəkə topologiyasının dizaynı</h3>
+ <p><b>Tapşırıq:</b> üç korpuslu universitet üçün miqyaslana bilən, etibarlı və performanslı şəbəkə topologiyası hazırlayın.</p>
+ <p><b>Məqsəd:</b> şəbəkə tələblərini, korpusların yerləşməsini, istifadəçi qruplarını və ehtiyat bağlantı ehtiyaclarını nəzərə alaraq infrastruktur layihələndirmək.</p>
+ <h3>Tapşırıq 2. Fiziki bağlantıların sınağı</h3><p>Hər korpusda bir mərtəbə seçin. Kabel və port etiketləmə planı qurun. Ən azı üç mümkün fiziki nasazlığı (açıq dövrə, qısa qapanma, yanlış patch bağlantısı) müəyyənləşdirin və diaqnostika ardıcıllığını yazın.</p>
+ <h3>Tapşırıq 3. Ethernet və kabel seçimi</h3><p>İstifadəçi portları, mərtəbə paylayıcıları, server otağı və korpuslararası magistral üçün kabel/media və uyğun Ethernet sinfini əsaslandırın.</p>
+ <h3>Tapşırıq 4. Dayanıqlılıq müqayisəsi</h3><p>Ulduz, halqa, ağac və mesh modellərində bir bağlantını sıradan çıxarın. Təsirlənən qovşaqların sayını, alternativ yolun olub-olmadığını və bərpa üsulunu müqayisə edin.</p>
+</section>
+<section id="lab" class="section">
+ <span class="tag">LABORATORİYA İŞİ № 3</span><h2>Kompüter şəbəkəsinin interaktiv layihələndirilməsi və topologiyaların modelləşdirilməsi</h2>
+ <p><b>İşin adı:</b> Üç korpuslu və üçmərtəbəli universitet binasının kompüter şəbəkəsinin layihələndirilməsi.</p>
+ <p><b>İşin məqsədi:</b> Star, Bus, Ring, Tree və Mesh topologiyalarını modelləşdirmək; fiziki və məntiqi bağlantıları qurmaq; Ethernet və kabel növlərini seçmək; şəbəkə qurğularını yerləşdirmək; nasazlıq simulyasiyası aparmaq; etibarlılıq və dayanıqlılığı müqayisə etmək.</p>
+ <h3>Nəzəri hissə</h3>
+ <p>Universitet kampusunda şəbəkə üç iyerarxik səviyyədə planlaşdırılır: nüvə (core), paylayıcı (distribution) və giriş (access). Korpuslararası magistral yüksək tutumlu fiber bağlantılarla, mərtəbə və otaq səviyyəsində bağlantılar isə layihəyə uyğun mis/fiber xətlərlə qurula bilər. Məntiqi seqmentləşdirmə VLAN və IP planı ilə həyata keçirilir.</p>
+ <h3>Praktiki hissə — kampus layihə konstruktoru</h3>
+ <div class="sim">
+  <div class="controls"><label>Əsas topologiya <select id="labTopo"><option>Tree</option><option>Star</option><option>Ring</option><option>Mesh</option><option>Bus</option></select></label><label>Magistral ehtiyatı <select id="redundancy"><option value="yes">İki müstəqil yol</option><option value="no">Tək yol</option></select></label><label>VLAN seqmentləri <select id="vlans"><option value="5">5 (İdarəetmə, müəllim, tələbə, qonaq, server)</option><option value="3">3 (İdarəetmə, istifadəçi, server)</option><option value="1">1 (Seqmentləşdirmə yoxdur)</option></select></label><button onclick="buildPlan()">Layihəni yarat</button></div>
+  <div id="planOut" class="result">Parametrləri seçib kampus planını yaradın.</div>
+ </div>
+ <h3>Şəbəkə qurğularının yerləşdirilməsi</h3>
+ <div class="tablewrap"><table><thead><tr><th>Yer</th><th>Avadanlıq</th><th>Funksiya</th><th>Təhlükəsizlik qeydi</th></tr></thead><tbody>
+ <tr><td>A korpusu, server otağı</td><td>Firewall, L3 core switch, serverlər, UPS</td><td>Kampus marşrutlaşdırması, siyasətlər, xidmətlər</td><td>Fiziki giriş nəzarəti, loglama, ehtiyat enerji.</td></tr>
+ <tr><td>Hər korpusun əsas telekom otağı</td><td>Distribution switch, fiber patch-panel</td><td>Mərtəbə şəbəkələrini korpus magistralına birləşdirmək</td><td>Bağlı rack, idarəetmə VLAN-ı, ehtiyat uplink.</td></tr>
+ <tr><td>Hər mərtəbə</td><td>Access switch, patch-panel</td><td>İstifadəçi cihazlarını qoşmaq</td><td>Port security, istifadəçi VLAN-ı, etiketləmə.</td></tr>
+ <tr><td>Auditoriya və laboratoriyalar</td><td>PC, printer, AP, IP telefon</td><td>Son istifadəçi bağlantısı</td><td>Qonaq və tələbə şəbəkələrinin ayrılması.</td></tr>
+ </tbody></table></div>
+ <h3>İşin yerinə yetirilməsi ardıcıllığı</h3>
+ <ol><li>Universitetin üç korpusunun və hər korpusun üç mərtəbəsinin planını çəkin.</li><li>Server otağını və əsas nüvə switch-in yerini müəyyən edin.</li><li>Hər korpusda paylayıcı, hər mərtəbədə giriş switch-lərini yerləşdirin.</li><li>Korpuslararası magistral və ehtiyat bağlantıları seçin.</li><li>Son qurğuları ulduz topologiyası ilə mərtəbə switch-lərinə qoşun.</li><li>VLAN-ları, IP altşəbəkələri və giriş siyasətlərini planlaşdırın.</li><li>Bir kabeli və bir switch portunu sıradan çıxarıb təsiri müşahidə edin.</li><li>Nəticələri cədvəldə müqayisə edin və hesabat hazırlayın.</li></ol>
+ <h3>Cisco Packet Tracer və GNS3-də icra</h3>
+ <div class="grid2">
+  <div class="mini"><b>Cisco Packet Tracer</b><p>Yeni layihə yaradın; 3 korpus üçün switch/router-ləri yerləşdirin; hər mərtəbənin access switch-lərini əlavə edin; copper/fiber bağlantıları qurun; VLAN və trunk-ları konfiqurasiya edin; Simulation rejimində paket axınını və link kəsilməsini müşahidə edin.</p></div>
+  <div class="mini"><b>GNS3</b><p>Virtual router/switch imkanlarından istifadə edin; topologiyanı qurun; Ethernet linklərini və marşrutlaşdırmanı konfiqurasiya edin; linki söndürüb alternativ marşrutun davranışını yoxlayın. İstifadə edilən switch imicinin L2/VLAN imkanları lisenziya və image-dən asılıdır.</p></div>
+ </div>
+ <div class="callout warning"><b>Laboratoriya təhlükəsizliyi:</b> bütün simulyasiyalar lokal və tədris mühitində aparılmalıdır. Universitetin real şəbəkəsində kabel ayırmaq, port söndürmək və ya konfiqurasiya dəyişmək yalnız səlahiyyətli administratorun yazılı icazəsi ilə mümkündür.</div>
+ <h3>Hesabat</h3>
+ <p>Hesabatda məqsəd, kampus planı, topologiya seçiminin əsaslandırılması, avadanlıq siyahısı, kabel/standart seçimi, VLAN və təhlükəsizlik planı, nasazlıq sınaqlarının nəticələri, müqayisə cədvəli və yekun nəticə olmalıdır.</p>
+ <div class="controls"><button onclick="makeReport()">Hesabat şablonunu yarat</button><button class="secondary" onclick="window.print()">Hesabatı çap et / PDF</button></div>
+ <textarea id="report" rows="9" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px" placeholder="Hesabat şablonu burada yaradılacaq. Tələbə öz nəticələrini əlavə edə bilər."></textarea>
+</section>
+<section id="refs" class="section">
+ <span class="tag">MODUL ÜZRƏ SEÇİLMİŞ ƏDƏBİYYAT</span><h2>Ədəbiyyat və texniki resurslar</h2>
+ <p>Əsas dərsliyin ədəbiyyat siyahısından Modul 3-ün topologiya, şəbəkə dizaynı, Ethernet və fiziki bağlantı mövzularına uyğun mənbələr seçilmişdir.</p>
+ <ol>
+ <li>Musayev V.H., Qənbərov M.M., Qənbərova G.T., Əliyeva Ş.X. <i>İnformasiya təhlükəsizliyi və kompüter şəbəkələri</i>. Bakı, 2015.</li>
+ <li>Келдыш Н.В. <i>Системная защита информации компьютерных сетей</i>. Учебное пособие. М.: Мир науки, 2022.</li>
+ <li>Пушнин А.В., Янушко В.В. <i>Информационные сети и телекоммуникации</i>. Таганрог: Изд-во ТРТУ, 2015.</li>
+ <li>Шаньгин В.Ф. <i>Информационная безопасность компьютерных систем и сетей</i>. М.: Форум, Инфра-М, 2011.</li>
+ <li>Шаньгин В.Ф. <i>Защита информации в компьютерных системах и сетях</i>. М.: ДМК Пресс, 2012.</li>
+ </ol>
+ <h3>Standartlar və proqramlar</h3>
+ <ul><li>IEEE 802.3 — Ethernet standartları ailəsi.</li><li>IEEE 802.3af / 802.3at — Power over Ethernet (PoE) standartları.</li><li>EIA/TIA‑568A və EIA/TIA‑568B — balanslaşdırılmış mis kabelin sonlandırma sxemləri.</li><li>Cisco Packet Tracer — şəbəkə topologiyalarının tədris simulyasiyası.</li><li>GNS3 — virtual şəbəkə laboratoriyası və topologiya emulyasiyası.</li></ul>
+ <p class="muted">Qeyd: standartların tətbiq ediləcək konkret nəşri və texniki parametrləri layihələndirmə zamanı rəsmi standart sənədləri və avadanlıq istehsalçılarının texniki sənədləri ilə dəqiqləşdirilməlidir.</p>
+</section>
+</main></div>
+<div class="footer">Şəbəkə təhlükəsizliyi · Modul 3 · Tədris məqsədli interaktiv material</div>
+<script>
+let baseFont=16;function changeFont(d){baseFont=Math.max(14,Math.min(21,baseFont+d));document.body.style.fontSize=baseFont+'px'}
+function toggleTheme(){document.body.classList.toggle('dark')}
+window.addEventListener('scroll',()=>{let h=document.documentElement;document.getElementById('progressBar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+const topoNodes={star:[[350,155,'Core'],[130,70,'PC 1'],[270,45,'PC 2'],[430,45,'PC 3'],[570,70,'PC 4'],[190,260,'Lab'],[510,260,'AP']],bus:[[350,155,'Bus'],[130,70,'PC 1'],[270,45,'PC 2'],[430,45,'PC 3'],[570,70,'PC 4'],[190,260,'Lab'],[510,260,'AP']],ring:[[350,35,'A'],[550,100,'B'],[550,235,'C'],[350,290,'D'],[150,235,'E'],[150,100,'F']],tree:[[350,45,'Core'],[170,145,'Dist A'],[350,145,'Dist B'],[530,145,'Dist C'],[100,260,'Access A'],[240,260,'Access B'],[350,260,'Access C'],[460,260,'Access D'],[600,260,'Access E']],mesh:[[350,40,'Core'],[150,125,'A'],[550,125,'B'],[150,265,'C'],[550,265,'D'],[350,190,'E']]};
+let disabled=new Set();function edges(type){if(type==='star')return [[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]];if(type==='bus')return [[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]];if(type==='ring')return [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]];if(type==='tree')return [[0,1],[0,2],[0,3],[1,4],[1,5],[2,6],[2,7],[3,8]];return [[0,1],[0,2],[0,4],[1,2],[1,3],[1,5],[2,4],[2,5],[3,4],[3,5],[4,5]]}
+function drawTopology(){let t=document.getElementById('topology').value,n=topoNodes[t],e=edges(t),s=document.getElementById('topoSvg');s.innerHTML='';e.forEach(([a,b],i)=>{let l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',n[a][0]);l.setAttribute('y1',n[a][1]);l.setAttribute('x2',n[b][0]);l.setAttribute('y2',n[b][1]);l.setAttribute('class','link'+(disabled.has(a+','+b)||disabled.has(b+','+a)?' down':''));s.appendChild(l)});n.forEach((p,i)=>{let g=document.createElementNS('http://www.w3.org/2000/svg','g');g.setAttribute('class','node'+(disabled.has('n'+i)?' off':''));g.onclick=()=>{disabled.has('n'+i)?disabled.delete('n'+i):disabled.add('n'+i);drawTopology()};let c=document.createElementNS('http://www.w3.org/2000/svg',t==='bus'?'rect':'circle');if(t==='bus'){c.setAttribute('x',p[0]-40);c.setAttribute('y',p[1]-18);c.setAttribute('width',80);c.setAttribute('height',36);c.setAttribute('rx',9)}else{c.setAttribute('cx',p[0]);c.setAttribute('cy',p[1]);c.setAttribute('r',25)}g.appendChild(c);let tx=document.createElementNS('http://www.w3.org/2000/svg','text');tx.setAttribute('x',p[0]);tx.setAttribute('y',p[1]+4);tx.textContent=p[2];g.appendChild(tx);s.appendChild(g)});let active=n.length-disabled.size;document.getElementById('topoResult').innerHTML=`Aktiv qovşaq: <b>${active}/${n.length}</b>. ${disabled.size?'Söndürülmüş qovşaqlar var.':'Bütün qovşaqlar aktivdir.'} ${t==='mesh'?'Mesh-də alternativ yolların çoxluğu dayanıqlılığı artıra bilər.':t==='tree'?'Ağac topologiyasında yuxarı qatdakı nasazlıq alt seqmentlərə təsir edə bilər.':t==='star'?'Mərkəzi qovşağın sıradan çıxması bütün ulduz seqmentini dayandırır.':t==='bus'?'Ortaq magistral xəttin sıradan çıxması bütün seqmentə təsir edir.':'Halqada alternativ dövrə və qoruma mexanizmi dizayndan asılıdır.'}`;}
+function resetTopology(){disabled.clear();drawTopology()}drawTopology();
+function diagnose(){let v=document.getElementById('fault').value,txt={unplug:'Link LED sönükdür. Fiziki bağlantı yoxlanılır: patch cord-un hər iki ucu oturdulur və kabel tester ilə sınaqdan keçirilir. Gözlənilən düzəliş: kabeli düzgün qoşmaq və link statusunu təsdiqləmək.',open:'Kabel testeri uyğun damarda davamlılığın olmadığını göstərir. Açıq dövrə ehtimalı: kabel/konnektor dəyişdirilir, sonra 1–8 damar xəritəsi yenidən test edilir.',short:'Testerdə damarlararası qısa qapanma aşkarlanır. Kabel xətti istifadədən çıxarılır, zədələnmiş patch cord və ya sonlandırma yenilənir.',port:'Kabel fiziki olaraq sağlamdır, lakin switch portu administrativ deaktivdir. Səlahiyyətli administrator port statusunu və port-security hadisələrini yoxlayır.',power:'Mərtəbə switch-ində enerji yoxdur. UPS, elektrik xətti və cihazın enerji indikatorları yoxlanılır; enerji bərpa olunandan sonra uplink və istifadəçi portları test edilir.',vlan:'Link aktivdir, lakin istifadəçi düzgün şəbəkə resursuna çıxmır. Access port VLAN-ı, trunk allowed VLAN siyahısı, DHCP və gateway parametrləri yoxlanılır.'};document.getElementById('faultOut').innerHTML=txt[v]}
+function chooseCable(){let typ=document.getElementById('linkType').value,d=+document.getElementById('distance').value;if(!d||d<1){document.getElementById('cableOut').textContent='Məsafəni düzgün daxil edin.';return}let msg;if(typ==='desk')msg=d<=90?'İstifadəçi → mərtəbə switch: uyğun kateqoriyalı balanslaşdırılmış mis Ethernet kabeli (kanalın ümumi uzunluğu və quraşdırma qaydaları yoxlanmaqla).':'90 m-dən artıq mis üfüqi xətt tövsiyə edilən kanal limitini aşır. Telekommunikasiya otağını yaxınlaşdırın və ya aralıq paylayıcı/fiber həllini layihələndirin.';else if(typ==='floor')msg=d<=90?'Eyni korpusda mərtəbə/telekom otaqları üçün məsafə və sürət tələbinə uyğun mis uplink və ya fiber seçilə bilər. Magistral üçün fiber daha çox ehtiyat verir.':'Uzun məsafəli mərtəbə magistralı üçün fiber optik həll nəzərdən keçirilməlidir.';else msg='Korpuslararası magistral üçün dielektrik fiber-optik kabel, uyğun single-mode/multi-mode seçimi və uyğun optik transiverlər layihələndirin. Mis kabeli binalar arasında torpaqlama/ildırım potensialı fərqləri səbəbindən avtomatik seçim etməyin.';document.getElementById('cableOut').textContent=msg}
+function checkWiring(){let a=document.getElementById('endA').value,b=document.getElementById('endB').value;document.getElementById('wiringOut').innerHTML=a===b?'<span class="ok">Düz kabel sxemi:</span> hər iki ucdakı pin ardıcıllığı eynidir ('+a+'–'+b+').':'<span class="ok">Krossover sxemi:</span> uclar fərqli standartla sonlandırılıb ('+a+'–'+b+'). Müasir cihazlarda Auto MDI‑X dəstəyi yoxlanmalıdır.'}
+function buildPlan(){let t=document.getElementById('labTopo').value,r=document.getElementById('redundancy').value,v=document.getElementById('vlans').value;let score=(t==='Tree'?3:t==='Mesh'?4:t==='Ring'?2:t==='Star'?2:1)+(r==='yes'?2:0)+(v==='5'?2:v==='3'?1:0);document.getElementById('planOut').innerHTML=`<b>Layihə nəticəsi</b><br>Topologiya: ${t}; ehtiyat magistral: ${r==='yes'?'mövcuddur':'yoxdur'}; məntiqi seqment: ${v} VLAN.<br><b>Qiymətləndirmə indeksi: ${score}/9</b><br>${t==='Tree'?'Ağac topologiyası kampusun iyerarxik quruluşuna uyğundur.':t==='Mesh'?'Mesh yüksək dayanıqlılıq verir, lakin daha çox port və kabel tələb edir.':t==='Bus'?'Şin kampus üçün tövsiyə edilmir: vahid magistral nöqtəsi kritik nasazlıq riski yaradır.':'Seçilən quruluş üçün korpuslararası ehtiyat yol və nüvə qatında redundans ayrıca layihələndirilməlidir.'}<br>${v==='1'?'Təhlükəsizlik baxımından VLAN seqmentləşdirməsi yoxdur — risk yüksəkdir.':'VLAN-lar arasında firewall/ACL siyasəti tətbiq edin; VLAN özü təkbaşına təhlükəsizlik zəmanəti deyil.'}`}
+function makeReport(){document.getElementById('report').value=`LABORATORİYA İŞİ № 3 — HESABAT\nTələbənin adı: ____________________  Qrup: __________\n1. İşin məqsədi:\n2. Universitet kampusunun topologiya sxemi (3 korpus × 3 mərtəbə):\n3. Seçilmiş topologiya və əsaslandırma:\n4. Şəbəkə qurğularının yerləşdirilməsi:\n5. Ethernet standartı və kabel növlərinin seçimi:\n6. Fiziki və məntiqi bağlantılar / VLAN planı:\n7. Simulyasiya edilmiş nasazlıq və diaqnostika nəticəsi:\n8. Dayanıqlılıq müqayisəsi:\n9. Təhlükəsizlik tədbirləri:\n10. Nəticə və təkliflər:\n`;}
+const questions=[
+{t:'single',q:'A korpusunda 3 mərtəbənin hər birində 40 kompüter var. Mərtəbə kompüterlərini lokal switch-ə qoşmaq üçün hansı topologiya daha münasibdir?',o:['Star — hər qurğu access switch-ə ayrıca qoşulur','Bus — bütün kompüterlər bir ortaq kabelə qoşulur','Ring — hər kompüter iki qonşuya qoşulur'],a:0,e:'Mərtəbə səviyyəsində ulduz topologiyası nasazlığı lokallaşdırır və idarəetməni asanlaşdırır.'},
+{t:'multi',q:'Universitetin korpuslararası magistralında dayanıqlılığı artırmaq üçün hansı tədbirlər uyğundur? (Bir neçə cavab seçin.)',o:['İki müstəqil fiber marşrut','Yalnız bir kabel kanalından istifadə','Ehtiyat uplink və marşrutlaşdırma/halqa qorunması','Kabel və portların etiketlənməməsi'],a:[0,2],e:'Fiziki cəhətdən mümkün qədər ayrı marşrutlar və ehtiyat uplink tək nasazlıq nöqtəsini azaldır.'},
+{t:'tf',q:'Fiziki topologiya kabel və avadanlığın real bağlantısını, məntiqi topologiya isə trafik və şəbəkə seqmentlərinin təşkilini təsvir edir.',a:true,e:'Bu fərq layihənin həm fiziki, həm də məntiqi səviyyədə sənədləşdirilməsinin vacibliyini göstərir.'},
+{t:'order',q:'B korpusunda laboratoriyanın bağlantı nasazlığını diaqnostika etmək üçün düzgün ardıcıllığı qurun.',o:['Təsir dairəsini müəyyən et','Kabel, konnektor və portu fiziki yoxla','Kabel testeri və port statusu ilə yoxla','Nasazlığı aradan qaldır və yenidən test et','Sxem və port etiketlərini yenilə'],a:[0,1,2,3,4],e:'Əvvəl təsir dairəsi daraldılır, sonra fiziki yoxlama və test, düzəliş, sonda sənədləşdirmə aparılır.'},
+{t:'match',q:'Nasazlıq əlamətini uyğun ehtimal olunan səbəblə əlaqələndirin.',pairs:[['Link LED sönükdür','Kabel çıxıb, port və ya enerji problemi'],['Testerdə damar əlaqəsi yoxdur','Açıq dövrə'],['İki damar arasında arzuolunmaz təmas','Qısa qapanma']],a:[0,1,2],e:'Link indikatoru fiziki linki göstərir; kabel testeri açıq dövrə və qısa qapanma kimi naqil problemlərini aşkarlayır.'},
+{t:'fill',q:'Ethernet mis kabelində hər iki uc eyni T568 standartı ilə sonlandırılıbsa, bu, adətən ______ kabel sxemidir.',a:'düz',e:'A–A və ya B–B eyni pin düzülüşü verdiyinə görə düz kabeldir.'},
+{t:'scenario',q:'C korpusunun 3-cü mərtəbəsində internet yoxdur. Switch-in link LED-i yanır, kompüter IP alır, lakin server VLAN-ına çıxış yoxdur. İlk hansı yoxlama daha məqsədəuyğundur?',o:['Kabeli dərhal dəyişmək','Access port VLAN-ı, trunk VLAN-ları və gateway/ACL qaydalarını yoxlamaq','Bütün switch-ləri yenidən başlatmaq'],a:1,e:'Fiziki link və DHCP işləyir; problem məntiqi seqmentləşdirmə və ya marşrut/giriş siyasətində ola bilər.'},
+{t:'single',q:'Korpus A ilə Korpus B arasında magistral bağlantı üçün hansı media daha münasib başlanğıc seçimidir?',o:['Uzun məsafəli fiber-optik magistral','Adi patch cord-u açıq havada uzatmaq','Telefon kabeli'],a:0,e:'Binalar arasında fiber-optik magistral yüksək tutum, məsafə və elektrik izolyasiyası baxımından üstün seçimdir; konkret fiber növü məsafəyə görə seçilir.'},
+{t:'multi',q:'Server otağının fiziki təhlükəsizliyi üçün hansı tədbirlər məqsədəuyğundur?',o:['Rack-lərin kilidlənməsi və giriş nəzarəti','UPS və temperatur monitorinqi','Patch-panel portlarının etiketlənməsi','Server otağını hamı üçün açıq saxlamaq'],a:[0,1,2],e:'Fiziki girişin məhdudlaşdırılması, enerji/ətraf mühit monitorinqi və sənədləşdirilmiş kabel infrastrukturu təhlükəsizliyi artırır.'},
+{t:'scenario',q:'Universitet rəhbərliyi şəbəkənin genişlənəcəyini və bir uplink qırıldıqda tədrisin dayanmasını istəmir. Hansı dizayn yanaşması daha məqsədəuyğundur?',o:['Bütün qurğuları bir bus kabelinə qoşmaq','İyerarxik ağac topologiyası, ehtiyat magistral və uyğun redundans','Hər mərtəbəni bir-birindən təcrid etmək'],a:1,e:'İyerarxik ağac kampusun idarəsini sadələşdirir; ehtiyat magistral və düzgün konfiqurasiya nasazlığa davamlılığı artırır.'}
+];
+function renderQuiz(){let box=document.getElementById('quiz');box.innerHTML='';questions.forEach((q,i)=>{let d=document.createElement('div');d.className='quizq';let h=document.createElement('h4');h.textContent=(i+1)+'. '+q.q;d.appendChild(h);if(q.t==='single'||q.t==='scenario'){q.o.forEach((o,j)=>{d.innerHTML+=`<label class="choice"><input type="radio" name="q${i}" value="${j}"> ${o}</label>`})}else if(q.t==='multi'){q.o.forEach((o,j)=>{d.innerHTML+=`<label class="choice"><input type="checkbox" name="q${i}" value="${j}"> ${o}</label>`})}else if(q.t==='tf'){d.innerHTML+=`<label class="choice"><input type="radio" name="q${i}" value="true"> Doğru</label><label class="choice"><input type="radio" name="q${i}" value="false"> Yanlış</label>`}else if(q.t==='order'){q.o.forEach((o,j)=>{d.innerHTML+=`<label class="choice">${j+1}. <select id="ord${i}_${j}">${q.o.map((_,k)=>`<option value="${k}">${k+1}</option>`).join('')}</select> ${o}</label>`})}else if(q.t==='match'){q.pairs.forEach((p,j)=>{d.innerHTML+=`<label class="choice">${p[0]} → <select id="mat${i}_${j}">${q.pairs.map((x,k)=>`<option value="${k}">${x[1]}</option>`).join('')}</select></label>`})}else if(q.t==='fill'){d.innerHTML+=`<input id="fill${i}" placeholder="Cavabı yazın" style="padding:10px;border:1px solid #ccd8e5;border-radius:8px;width:100%">`}let fb=document.createElement('div');fb.id='fb'+i;fb.className='feedback';d.appendChild(fb);box.appendChild(d)})}
+function gradeQuiz(){let score=0;questions.forEach((q,i)=>{let ok=false;if(q.t==='single'||q.t==='scenario'){let x=document.querySelector(`input[name=q${i}]:checked`);ok=!!x&&+x.value===q.a}else if(q.t==='multi'){let x=[...document.querySelectorAll(`input[name=q${i}]:checked`)].map(z=>+z.value).sort();ok=JSON.stringify(x)===JSON.stringify([...q.a].sort())}else if(q.t==='tf'){let x=document.querySelector(`input[name=q${i}]:checked`);ok=!!x&&(x.value==='true')===q.a}else if(q.t==='order'){let x=q.o.map((_,j)=>+document.getElementById(`ord${i}_${j}`).value);ok=x.every((v,j)=>v===j)}else if(q.t==='match'){let x=q.pairs.map((_,j)=>+document.getElementById(`mat${i}_${j}`).value);ok=x.every((v,j)=>v===j)}else if(q.t==='fill'){ok=document.getElementById('fill'+i).value.trim().toLowerCase()==='düz'}if(ok)score++;document.getElementById('fb'+i).innerHTML=`${ok?'<span class="ok">Doğru.</span>':'<span class="err">Tam doğru deyil.</span>'} ${q.e}`});document.getElementById('quizScore').innerHTML=`Nəticə: <span class="score">${score}/10</span> (${score*10}%). ${score>=9?'Əla!':score>=7?'Yaxşı nəticə.':score>=5?'Mövzuları yenidən nəzərdən keçirin.':'Mövzunu təkrar oxuyun və ssenariləri yenidən həll edin.'}`}
+function resetQuiz(){renderQuiz();document.getElementById('quizScore').textContent='Cavablar sıfırlandı.'}renderQuiz();
+</script>
+</body></html>
